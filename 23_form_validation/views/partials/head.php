@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>PHP Router</title>
+    <title>PHP Notes App</title>
 </head>
 
 <body class="h-full">

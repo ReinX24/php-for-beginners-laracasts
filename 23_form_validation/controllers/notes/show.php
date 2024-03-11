@@ -14,4 +14,4 @@ $note = $db->query("SELECT * FROM notes WHERE id = :id;", [
 // Checks if the currentUserId is equal to the user_id stored in the note
 authorize($note['user_id'] === $currentUserId);
 
-require 'views/note.view.php';
+require 'views/notes/show.view.php';

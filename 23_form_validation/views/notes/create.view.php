@@ -1,8 +1,8 @@
-<?php require('partials/head.php'); ?>
+<?php require('views/partials/head.php'); ?>
 
-<?php require('partials/nav.php'); ?>
+<?php require('views/partials/nav.php'); ?>
 
-<?php require('partials/banner.php'); ?>
+<?php require('views/partials/banner.php'); ?>
 
 <main>
     <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
@@ -21,9 +21,10 @@
                     placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
                     focus:ring-indigo-600 sm:text-sm sm:leading-6" 
                     placeholder="Here's an idea for a note..."
-                    ></textarea>
+                    ><?= $_POST["body"] ?? ""; ?></textarea>
+                    <!-- ?? checks if the value exists, if not, echo "" -->
 
-                    <?php if (isset($errors)) : ?>
+                    <?php if (isset($errors["body"])) : ?>
                         <p class="text-red-500 text-xs mt-2"><?= $errors['body']; ?></p>
                     <?php endif; ?>
                 </div>
@@ -42,4 +43,4 @@
     </div>
 </main>
 
-<?php require('partials/footer.php') ?>
+<?php require('views/partials/footer.php') ?>
