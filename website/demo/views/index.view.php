@@ -4,4 +4,6 @@
 
 <?php require 'partials/banner.php'; ?>
 
+<p>Hello. Welcome to the home page.</p>
+
 <?php require 'partials/footer.php'; ?>

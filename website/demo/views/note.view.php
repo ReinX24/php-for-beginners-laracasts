@@ -4,6 +4,7 @@
 
 <?php require 'partials/banner.php'; ?>
 
-<p>Hello. Welcome to the about page.</p>
+<a href="/notes" class="btn btn-secondary mb-4">Go back</a>
+<p><?= $note['body']; ?></p>
 
 <?php require 'partials/footer.php'; ?>

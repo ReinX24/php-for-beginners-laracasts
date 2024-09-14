@@ -19,6 +19,11 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link
+                        <?= urlIs('/notes') ? "active" : "" ?>
+                    " href="/notes">Notes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link
                         <?= urlIs('/contact') ? "active" : "" ?>
                     " href="/contact">Contact</a>
                 </li>

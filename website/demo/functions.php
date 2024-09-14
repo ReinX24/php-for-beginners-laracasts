@@ -19,7 +19,7 @@ function urlIs($value)
 function abort($code = 404)
 {
     // Show an error page and terminate the php script
-    http_response_code(404);
+    http_response_code($code);
 
     require "views/$code.php";
 
