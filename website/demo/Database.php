@@ -2,6 +2,7 @@
 class Database
 {
     public $connection;
+    public $statement;
 
     public function __construct($config, $username = 'root', $password = '')
     {
@@ -12,7 +13,7 @@ class Database
         //         charset={$config['charset']}";
 
         // host=localhost;port=3306;dbname=myapp
-        $dsn = "mysql:host" . http_build_query($config, '', ';');
+        $dsn = "mysql:" . http_build_query($config, '', ';');
 
         $this->connection = new PDO($dsn, $username, $password, [
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
@@ -21,8 +22,22 @@ class Database
 
     public function query($query, $params = [])
     {
-        $statement = $this->connection->prepare($query);
-        $statement->execute($params);
-        return $statement;
+        $this->statement = $this->connection->prepare($query);
+        $this->statement->execute($params);
+        return $this; // returns Database object
+    }
+
+    public function find()
+    {
+        return $this->statement->fetch();
+    }
+
+    public function findOrFail()
+    {
+        $result = $this->find();
+        // Not found error if the note does not exist
+        if (!$result) {
+            abort();
+        }
     }
 }
