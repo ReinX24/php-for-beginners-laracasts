@@ -17,4 +17,6 @@
     <?php endforeach; ?>
 </ul>
 
+<a href="/note/create" class="btn btn-primary">Create Note</a>
+
 <?php require 'partials/footer.php'; ?>

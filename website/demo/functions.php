@@ -35,3 +35,11 @@ function routeToController($uri, $routes)
         abort();
     }
 }
+
+function authorize($condition, $status = Response::FORBIDDEN)
+{
+    // If the condition is false / unauthorized
+    if (!$condition) {
+        abort($status); // unauthorized access code
+    }
+}

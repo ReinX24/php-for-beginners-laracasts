@@ -39,5 +39,12 @@ class Database
         if (!$result) {
             abort();
         }
+
+        return $result;
+    }
+
+    public function get()
+    {
+        return $this->statement->fetchAll();
     }
 }

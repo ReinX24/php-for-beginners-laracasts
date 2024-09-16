@@ -13,9 +13,7 @@ $note = $db
 
 // Unauthorized access if the note user_id is not the current user
 $currentUserId = 1;
-if ($note['user_id'] !== $currentUserId) {
-    abort(Response::FORBIDDEN); // unauthorized status code
-}
+authorize($note['user_id'] === $currentUserId);
 
 $heading = "Note #{$note['id']}";
 
