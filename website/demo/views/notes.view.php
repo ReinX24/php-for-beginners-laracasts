@@ -11,7 +11,8 @@
         <li>
             <a href="/note?id=<?= $note['id']; ?>"
                 class="link-underline link-underline-opacity-0 link-underline-opacity-100-hover">
-                <?= $note['body']; ?>
+                <!-- htmlspecialchars escape special characters -->
+                <?= htmlspecialchars($note['body']); ?>
             </a>
         </li>
     <?php endforeach; ?>
