@@ -17,4 +17,4 @@ authorize($note['user_id'] === $currentUserId);
 
 $heading = "Note #{$note['id']}";
 
-require 'views/note.view.php';
+require 'views/notes/show.view.php';

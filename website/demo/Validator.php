@@ -15,7 +15,6 @@ class Validator
 
     public static function email($value)
     {
-        // TODO: continue @4:54:39
-        filter_var($value, FILTER_VALIDATE_EMAIL);
+        return filter_var($value, FILTER_VALIDATE_EMAIL);
     }
 }
