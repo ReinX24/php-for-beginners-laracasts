@@ -43,3 +43,16 @@ function authorize($condition, $status = Response::FORBIDDEN)
         abort($status); // unauthorized access code
     }
 }
+
+function basePath($path)
+{
+    return BASE_PATH . $path;
+}
+
+function view($path, $attributes = [])
+{
+    // Makes key values into variables and values
+    extract($attributes);
+
+    require basePath('views/' . $path);
+}

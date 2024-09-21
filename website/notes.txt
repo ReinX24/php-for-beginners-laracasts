@@ -1,0 +1,3 @@
+# Start the PHP server with root document
+# This assumes that you are currently on the demo directory
+php -S localhost:8080 -t public
