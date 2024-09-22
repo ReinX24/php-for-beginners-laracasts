@@ -16,26 +16,6 @@ function urlIs($value)
     return $_SERVER['REQUEST_URI'] === $value;
 }
 
-function abort($code = 404)
-{
-    // Show an error page and terminate the php script
-    http_response_code($code);
-
-    require "views/$code.php";
-
-    die();
-}
-
-function routeToController($uri, $routes)
-{
-    // Checks if the uri exists within the routes
-    if (array_key_exists($uri, $routes)) {
-        require $routes[$uri];
-    } else {
-        abort();
-    }
-}
-
 function authorize($condition, $status = Response::FORBIDDEN)
 {
     // If the condition is false / unauthorized

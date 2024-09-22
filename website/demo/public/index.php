@@ -1,15 +1,17 @@
 <?php
 
-// TODO: continue @5:23:08 Namespacing
+// TODO: resume @5:33:15
 const BASE_PATH = __DIR__ . "/../"; // points to demo folder
 
-require BASE_PATH . 'functions.php';
+require BASE_PATH . 'Core/functions.php';
 
 spl_autoload_register(function ($class) {
     // dd($class);
-    require basePath("Core/{$class}.php");
+    // Replacing all back slashes to forward slashes (/ for Windows)
+    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+    require basePath("{$class}.php");
 });
 
 // require basePath('Database.php');
 // require basePath('Response.php');
-require basePath('router.php');
+require basePath('Core/router.php');
