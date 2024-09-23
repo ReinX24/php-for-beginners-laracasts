@@ -1,6 +1,5 @@
 <?php
 
-// TODO: resume @5:33:15
 const BASE_PATH = __DIR__ . "/../"; // points to demo folder
 
 require BASE_PATH . 'Core/functions.php';
