@@ -8,7 +8,9 @@
 
 <p><?= htmlspecialchars($note['body']); ?></p>
 
-// TODO: resume @5:36:04
-<a href="" class="btn btn-danger">Delete</a>
+<form action="/note" method="POST">
+    <input type="hidden" name="id" value="<?= $note['id'] ?>">
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
 
 <?php basePath('view/partials/footer.php'); ?>
