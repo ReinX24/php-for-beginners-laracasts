@@ -9,4 +9,7 @@
 //     '/contact' => 'controllers/contact.php',
 // ];
 
-// TODO: continue @5:48:22
+$router->get('/', 'controllers/index.php');
+$router->delete('/note', 'controllers/notes/destroy.php');
+
+dd($router->routes);
