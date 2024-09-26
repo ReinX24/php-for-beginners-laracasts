@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use RuntimeException;
+
 class Router
 {
     protected $routes = [];
@@ -51,10 +53,28 @@ class Router
         ];
     }
 
-    public function route($uri) {
+    public function route($uri, $method)
+    {
+        // TODO: resume @6:02:47
+        var_dump($uri, $method);
         foreach ($this->routes as $route) {
-            // TODO: continue @5:57:15
+            if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
+                return require basePath($route['controller']);
+            }
         }
+
+        // abort, no matching uri is found
+        $this->abort();
+    }
+
+    protected function abort($code = 404)
+    {
+        // Show an error page and terminate the php script
+        http_response_code($code);
+
+        require basePath("views/$code.php");
+
+        die();
     }
 }
 

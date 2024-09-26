@@ -12,4 +12,4 @@
 $router->get('/', 'controllers/index.php');
 $router->delete('/note', 'controllers/notes/destroy.php');
 
-dd($router->routes);
+// dd($router->routes);
