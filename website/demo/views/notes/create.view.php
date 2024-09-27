@@ -5,7 +5,7 @@
 <?php require basePath('views/partials/banner.php'); ?>
 
 <!-- Form for creating a note -->
-<form action="/note/create" method="POST">
+<form action="/note" method="POST">
     <!-- Note body text -->
     <div class="mb-3">
         <label for="body" class="form-label">Body</label>
