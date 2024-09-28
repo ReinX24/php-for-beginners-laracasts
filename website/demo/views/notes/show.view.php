@@ -8,10 +8,14 @@
 
 <p><?= htmlspecialchars($note['body']); ?></p>
 
-<form action="/note" method="POST">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="hidden" name="id" value="<?= $note['id'] ?>">
-    <button type="submit" class="btn btn-danger">Delete</button>
-</form>
+<div class="d-flex gap-2">
+    <a href="/note/edit?id=<?= $note['id']; ?>" class="btn btn-primary">Edit</a>
+
+    <form action="/note" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="id" value="<?= $note['id'] ?>">
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+</div>
 
 <?php basePath('view/partials/footer.php'); ?>
