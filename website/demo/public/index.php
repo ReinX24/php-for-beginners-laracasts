@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 const BASE_PATH = __DIR__ . "/../"; // points to demo folder
 
 require BASE_PATH . 'Core/functions.php';

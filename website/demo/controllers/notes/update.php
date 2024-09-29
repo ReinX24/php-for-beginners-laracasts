@@ -6,7 +6,6 @@ use Core\Validator;
 
 $db = App::resolve(Database::class);
 
-// TODO: continue @6:52:30
 $currentUserId = 1;
 
 // Find the corresponding note
