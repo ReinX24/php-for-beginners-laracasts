@@ -4,6 +4,8 @@
 
 <?php require 'partials/banner.php'; ?>
 
-<p>Hello. Welcome to the home page.</p>
+<div class="container col-8 p-4">
+    <p>Hello. Welcome to the home page.</p>
+</div>
 
 <?php require 'partials/footer.php'; ?>
