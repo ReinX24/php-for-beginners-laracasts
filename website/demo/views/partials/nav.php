@@ -29,11 +29,12 @@
                 </li>
             </ul>
 
-            <div class="ms-auto d-flex align-items-center">
+            <div class="ms-auto d-flex align-items-center gap-2">
                 <?php if ($_SESSION['user'] ?? false) : ?>
                     <p class="text-light p-0 m-0"><?= $_SESSION['user']['email']; ?></p>
                 <?php else : ?>
-                    <a href="/register" class="text-light link-underline link-underline-opacity-0">Register</a>
+                    <a href="/login" class="text-light link-underline-light link-offset-3 <?= urlIs("/login") ? "link-underline-opacity-100" : "link-underline-opacity-0"; ?>">Login</a>
+                    <a href="/register" class="text-light link-underline-light link-offset-3 <?= urlIs("/register") ? "link-underline-opacity-100" : "link-underline-opacity-0"; ?>">Register</a>
                 <?php endif ?>
             </div>
         </div>
