@@ -6,7 +6,7 @@
     <h1 class="text-center">Log In!</h1>
     <p class="text-center">Log in existing account.</p>
 
-    <form action="/sessions" method="POST">
+    <form action="/session" method="POST">
         <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
             <input type="email" name="email" class="form-control" value="<?= $email ?? ""; ?>">

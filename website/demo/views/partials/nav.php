@@ -17,11 +17,13 @@
                         <?= urlIs('/about') ? "active" : "" ?>
                     " href="/about">About</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link
+                <?php if ($_SESSION["user"] ?? false) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link
                         <?= urlIs('/notes') ? "active" : "" ?>
                     " href="/notes">Notes</a>
-                </li>
+                    </li>
+                <?php endif; ?>
                 <li class="nav-item">
                     <a class="nav-link
                         <?= urlIs('/contact') ? "active" : "" ?>
@@ -32,9 +34,13 @@
             <div class="ms-auto d-flex align-items-center gap-2">
                 <?php if ($_SESSION['user'] ?? false) : ?>
                     <p class="text-light p-0 m-0"><?= $_SESSION['user']['email']; ?></p>
+                    <form action="/session" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                    </form>
                 <?php else : ?>
-                    <a href="/login" class="text-light link-underline-light link-offset-3 <?= urlIs("/login") ? "link-underline-opacity-100" : "link-underline-opacity-0"; ?>">Login</a>
-                    <a href="/register" class="text-light link-underline-light link-offset-3 <?= urlIs("/register") ? "link-underline-opacity-100" : "link-underline-opacity-0"; ?>">Register</a>
+                    <a href="/login" class="btn btn-primary">Login</a>
+                    <a href="/register" class="btn btn-secondary">Register</a>
                 <?php endif ?>
             </div>
         </div>
