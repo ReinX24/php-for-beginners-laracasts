@@ -48,27 +48,33 @@ function view($path, $attributes = [])
     require basePath('views/' . $path);
 }
 
-function login($user)
+function redirect($path)
 {
-    $_SESSION['user'] = [
-        'email' => $user['email']
-    ];
-
-    session_regenerate_id(true);
+    header("Location: {$path}");
+    exit;
 }
 
-function logout()
-{
-    $_SESSION = []; // remove all session variables
-    session_destroy(); // destroys the session
+// function login($user)
+// {
+//     $_SESSION['user'] = [
+//         'email' => $user['email']
+//     ];
 
-    $params = session_get_cookie_params();
-    setcookie(
-        'PHPSESSID',
-        '',
-        time() - 3600,
-        $params["path"],
-        $params["domain"],
-        $params["secure"]
-    );
-}
+//     session_regenerate_id(true);
+// }
+
+// function logout()
+// {
+//     $_SESSION = []; // remove all session variables
+//     session_destroy(); // destroys the session
+
+//     $params = session_get_cookie_params();
+//     setcookie(
+//         'PHPSESSID',
+//         '',
+//         time() - 3600,
+//         $params["path"],
+//         $params["domain"],
+//         $params["secure"]
+//     );
+// }
