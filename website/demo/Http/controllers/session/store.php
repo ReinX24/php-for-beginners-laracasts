@@ -3,6 +3,8 @@
 use Core\Authenticator;
 use Http\Forms\LoginForm;
 
+var_dump("I have been POSTED");
+
 $email = $_POST['email'];
 $password = $_POST['password'];
 
@@ -22,7 +24,12 @@ if ($form->validate($email, $password)) {
 
 // Password validation failed.
 // Go back to the login page.
-return view("session/create.view.php", [
-    "email" => $email,
-    "errors" => $form->errors()
-]);
+$_SESSION["_flash"]["email"] = $email;
+$_SESSION["_flash"]["errors"] = $form->errors();
+
+return redirect("/login");
+
+// return view("session/create.view.php", [
+//     "email" => $email,
+//     "errors" => $form->errors()
+// ]);

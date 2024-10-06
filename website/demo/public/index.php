@@ -1,6 +1,5 @@
 <?php
 
-// TODO: continue @8:47:41
 session_start();
 
 const BASE_PATH = __DIR__ . "/../"; // points to demo folder
@@ -24,3 +23,6 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $method = $_POST["_method"] ?? $_SERVER["REQUEST_METHOD"];
 
 $router->route($uri, $method);
+
+// Clearing out any flash session data
+unset($_SESSION["_flash"]);

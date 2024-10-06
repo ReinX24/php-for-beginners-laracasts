@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2024 at 04:24 PM
+-- Generation Time: Oct 06, 2024 at 04:35 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -33,17 +33,6 @@ CREATE TABLE `notes` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `notes`
---
-
-INSERT INTO `notes` (`id`, `body`, `user_id`) VALUES
-(1, 'Ideas for next vacation.', 1),
-(2, 'Next art project research.', 2),
-(3, 'Work reminders.', 1),
-(4, 'Design techniques blog post.', 2),
-(5, 'Thoughts on my continued learning of PHP.', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -52,16 +41,17 @@ INSERT INTO `notes` (`id`, `body`, `user_id`) VALUES
 
 CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL
+  `title` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`id`, `title`) VALUES
-(1, 'This is the first post!'),
-(2, 'This is the second post!');
+INSERT INTO `posts` (`id`, `title`, `user_id`) VALUES
+(1, 'This is the first post!', 0),
+(2, 'This is the second post!', 0);
 
 -- --------------------------------------------------------
 
@@ -71,17 +61,17 @@ INSERT INTO `posts` (`id`, `title`) VALUES
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`) VALUES
-(1, 'John', 'john@example.com'),
-(2, 'Kate', 'kate@example.com');
+INSERT INTO `users` (`id`, `email`, `password`) VALUES
+(9, 'john@example.com', '$2y$10$ZBS5rohpoBRabFF5crZwEOdo/cQzh4eL5tNp42jHQ9DCthpizUNqO'),
+(10, 'rein@gmail.com', '$2y$10$VT.j4jP732bFzfd6QMZr8eWICCZ8DQip8Arf7uY0hyJP22GhmJrWC');
 
 --
 -- Indexes for dumped tables
@@ -115,7 +105,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `notes`
 --
 ALTER TABLE `notes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -127,7 +117,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
