@@ -25,6 +25,10 @@
             <p class="text-danger"><?= $errors['password']; ?></p>
         <?php endif ?>
 
+        <?php if (isset($errors['no_matching_email_account'])) : ?>
+            <p class="text-danger"><?= $errors['no_matching_email_account']; ?></p>
+        <?php endif ?>
+
         <button type="submit" class="btn btn-primary w-100">Login</button>
     </form>
 

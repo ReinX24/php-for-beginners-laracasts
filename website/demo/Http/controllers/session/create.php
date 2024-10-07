@@ -1,6 +1,8 @@
 <?php
 
+use Core\Session;
+
 view("session/create.view.php", [
-    "email" => $_SESSION["_flash"]["email"] ?? "",
-    "errors" => $_SESSION["_flash"]["errors"] ?? [],
+    "email" => Session::get("email") ?? "",
+    "errors" => Session::get("errors") ?? "",
 ]);
