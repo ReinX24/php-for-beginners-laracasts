@@ -2,7 +2,6 @@
 
 use Core\Session;
 
-// TODO: continue @9:08:47
 session_start();
 
 const BASE_PATH = __DIR__ . "/../"; // points to demo folder
