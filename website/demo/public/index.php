@@ -25,14 +25,14 @@ $routes = require basePath('routes.php');
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $method = $_POST["_method"] ?? $_SERVER["REQUEST_METHOD"];
 
-// TODO: continue @9:33:18 
+// TODO: continue @9:40:50
 try {
     $router->route($uri, $method);
 } catch (ValidationException $exception) {
     Session::flash("old", $exception->old);
     Session::flash("errors", $exception->errors);
 
-    return redirect("/login");
+    return redirect($router->previousUrl());
 }
 
 // Clearing out any flash session data.

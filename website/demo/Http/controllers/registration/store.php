@@ -6,22 +6,36 @@ use Core\Database;
 use Core\Validator;
 use Http\Forms\RegisterForm;
 
-$email = $_POST['email'];
-$password = $_POST['password'];
+$form = RegisterForm::validate(
+    $attributes = [
+        "email" => $_POST['email'],
+        "password" => $_POST['password']
+    ]
+);
 
-$form = new RegisterForm();
+$registeredAccount = (new Authenticator)->attemptRegister(
+    $attributes["email"],
+    $attributes["password"]
+);
 
-// Validate the form inputs.
-if ($form->validate($email, $password)) {
-    if ((new Authenticator)->attemptRegister($email, $password)) {
-        redirect("/");
-    }
-
-    // If the email and password are valid but cannot register account.
-    $form->error("email", "That email is already in use!");
+if (!$registeredAccount) {
+    // TODO: finish when an account is found
+    // $form
+    //     ->error(
+    //         "no_matching_email_account",
+    //         "No matching account found for that email address and password."
+    //     )
+    //     ->throw();
+    // redirect("/login");
 }
 
-return view('registration/create.view.php', [
-    'email' => $email,
-    'errors' => $form->errors(),
-]);
+// Validate the form inputs.
+// if ((new Authenticator)->attemptRegister($email, $password)) {
+//     redirect("/");
+// }
+
+// If the email and password are valid but cannot register account.
+// return view('registration/create.view.php', [
+//     'email' => $email,
+//     'errors' => $form->errors(),
+// ]);

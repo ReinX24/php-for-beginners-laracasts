@@ -1,26 +1,40 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Http\Forms;
 
 use Core\Validator;
+use Core\ValidationException;
 
 class RegisterForm
 {
     protected $errors = [];
 
-    public function validate($email, $password): bool
+    public function __construct(public array $attributes)
     {
-        if (!Validator::email($email)) {
+        if (!Validator::email($attributes["email"])) {
             $this->errors['email'] = 'Please provide a valid email address.';
         }
 
-        if (!Validator::string($password, 7, 255)) {
+        if (!Validator::string($attributes["password"], 7, 255)) {
             $this->errors['password'] = 'Please provide a password of at least seven characters.';
         }
+    }
 
-        return empty($this->errors);
+    public static function validate($attributes)
+    {
+        $instance = new static($attributes);
+
+        return $instance->failed() ? $instance->throw() : $instance;
+    }
+
+    public function throw()
+    {
+        ValidationException::throw($this->errors(), $this->attributes);
+    }
+
+    public function failed()
+    {
+        return count($this->errors());
     }
 
     public function errors()
@@ -31,5 +45,7 @@ class RegisterForm
     public function error($field, $message)
     {
         $this->errors[$field] = $message;
+
+        return $this;
     }
 }

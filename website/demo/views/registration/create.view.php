@@ -9,7 +9,7 @@
     <form action="/register" method="POST">
         <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
-            <input type="email" name="email" class="form-control" value="<?= $email ?? ""; ?>">
+            <input type="email" name="email" class="form-control" value="<?= old("email"); ?>">
         </div>
 
         <?php if (isset($errors['email'])) : ?>
