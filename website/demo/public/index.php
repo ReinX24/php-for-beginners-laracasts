@@ -1,6 +1,7 @@
 <?php
 
 use Core\Session;
+use Core\ValidationException;
 
 session_start();
 
@@ -24,7 +25,15 @@ $routes = require basePath('routes.php');
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $method = $_POST["_method"] ?? $_SERVER["REQUEST_METHOD"];
 
-$router->route($uri, $method);
+// TODO: continue @9:33:18 
+try {
+    $router->route($uri, $method);
+} catch (ValidationException $exception) {
+    Session::flash("old", $exception->old);
+    Session::flash("errors", $exception->errors);
 
-// Clearing out any flash session data
+    return redirect("/login");
+}
+
+// Clearing out any flash session data.
 Session::unflash();

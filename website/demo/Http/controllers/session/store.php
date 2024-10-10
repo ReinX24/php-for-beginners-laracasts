@@ -2,7 +2,6 @@
 
 use Core\Authenticator;
 use Http\Forms\LoginForm;
-use Core\Session;
 
 // $email = $_POST['email'];
 // $password = $_POST['password'];
@@ -21,13 +20,6 @@ if ((new Authenticator)->attempt($attributes["email"], $attributes["password"]))
 
 // If the user is not authenticated, add error messages.
 $form->error("no_matching_email_account", "No matching account found for that email address and password.");
-
-// Password validation failed.
-// Go back to the login page.
-Session::flash("old", [
-    "email" => $_POST["email"]
-]);
-Session::flash("errors", $form->errors());
 
 return redirect("/login");
 
