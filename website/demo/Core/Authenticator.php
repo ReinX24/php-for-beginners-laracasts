@@ -7,7 +7,8 @@ class Authenticator
     public function attempt($email, $password)
     {
         // Match the credentials
-        $user = App::resolve(Database::class)->query("SELECT * FROM users WHERE email = :email", [
+        $db = App::resolve(Database::class);
+        $user = $db->query("SELECT * FROM users WHERE email = :email", [
             "email" => $email
         ])->find();
 
@@ -17,7 +18,8 @@ class Authenticator
             if (password_verify($password, $user["password"])) {
                 // Log in the user if the credentials match.
                 $this->login([
-                    'email' => $email
+                    'id' => $user["id"],
+                    'email' => $user["email"]
                 ]);
 
                 // If the password is verified, then the user is authenticated.
@@ -64,6 +66,7 @@ class Authenticator
     public function login($user)
     {
         $_SESSION['user'] = [
+            'id' => $user['id'],
             'email' => $user['email']
         ];
 

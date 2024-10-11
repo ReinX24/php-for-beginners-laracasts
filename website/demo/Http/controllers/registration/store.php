@@ -19,15 +19,12 @@ $registeredAccount = (new Authenticator)->attemptRegister(
 );
 
 if (!$registeredAccount) {
-    // TODO: finish when an account is found
-    // $form
-    //     ->error(
-    //         "no_matching_email_account",
-    //         "No matching account found for that email address and password."
-    //     )
-    //     ->throw();
-    // redirect("/login");
+    // When an account is found, redirect back to the login page.
+    redirect("/login");
 }
+
+// If the user successfully registers their account, 
+redirect("/");
 
 // Validate the form inputs.
 // if ((new Authenticator)->attemptRegister($email, $password)) {

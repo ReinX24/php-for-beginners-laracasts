@@ -6,7 +6,13 @@ use Core\Database;
 $db = App::resolve(Database::class);
 
 // Unauthorized access if the note user_id is not the current user
-$currentUserId = 1;
+
+// Get the current id of our logged in user.
+$currentUserId = $db->query("SELECT id FROM users WHERE email = :email", [
+    'email' => $_SESSION["user"]["email"]
+])->findOrFail();
+
+$currentUserId = $currentUserId["id"];
 
 $note = $db
     ->query(

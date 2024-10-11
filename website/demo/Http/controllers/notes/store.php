@@ -22,11 +22,16 @@ if (!empty($errors)) {
 
 // If there are no errors, enter data to our database
 if (empty($errors)) {
+    // Get the current id of our logged in user.
+    $currentUserId = $db->query("SELECT id FROM users WHERE email = :email", [
+        'email' => $_SESSION["user"]["email"]
+    ])->findOrFail();
+
     $db->query(
         "INSERT INTO notes (body, user_id) VALUES (:body, :user_id)",
         [
             'body' => $_POST['body'],
-            'user_id' => 1,
+            'user_id' => $currentUserId['id'],
         ]
     );
 
