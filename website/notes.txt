@@ -1,3 +1,14 @@
 # Start the PHP server with root document
 # This assumes that you are currently on the demo directory
 php -S localhost:8080 -t public
+
+# Composer Notes
+
+# Creating a composer.json file
+composer init
+
+# Installing composer dependencies
+composer install
+
+# Updating autoloading
+composer dump-autoload

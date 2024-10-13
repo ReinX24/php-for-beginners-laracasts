@@ -14,7 +14,7 @@ $form = LoginForm::validate(
     ]
 );
 
-$signedIn = (new Authenticator)->attempt(
+$signedIn = (new Authenticator)->attemptLogin(
     $attributes["email"],
     $attributes["password"]
 );

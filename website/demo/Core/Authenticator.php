@@ -4,13 +4,13 @@ namespace Core;
 
 class Authenticator
 {
-    public function attempt($email, $password)
+    public function attemptLogin($email, $password)
     {
         // Match the credentials
         $db = App::resolve(Database::class);
         $user = $db->query("SELECT * FROM users WHERE email = :email", [
             "email" => $email
-        ])->find();
+        ])->findOrFail();
 
         // If a user is not found (false)
         if ($user) {
@@ -54,8 +54,13 @@ class Authenticator
                 ]
             );
 
+            $user = $db->query("SELECT * FROM users WHERE email = :email", [
+                "email" => $email
+            ])->findOrFail();
+
             // Mark that the user has logged in.
             $this->login([
+                'id' => $user["id"],
                 'email' => $email
             ]);
 
