@@ -12,3 +12,12 @@ composer install
 
 # Updating autoloading
 composer dump-autoload
+
+# Requiring a package
+composer require {package name}
+
+composer require illuminate/collections
+composer require pestphp/pest
+
+# Running pestphp
+./vendor/bin/pest --init
