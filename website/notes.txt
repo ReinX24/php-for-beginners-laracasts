@@ -19,5 +19,6 @@ composer require {package name}
 composer require illuminate/collections
 composer require pestphp/pest
 
-# Running pestphp
+# Using pestphp
 ./vendor/bin/pest --init
+vendor/bin/pest
