@@ -22,3 +22,4 @@ composer require pestphp/pest
 # Using pestphp
 ./vendor/bin/pest --init
 vendor/bin/pest
+.\vendor\bin\pest .\tests\Unit\ValidatorTest.php
