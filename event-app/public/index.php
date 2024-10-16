@@ -11,14 +11,6 @@ session_start();
 
 require BASE_PATH . 'Core/functions.php';
 
-/*
-spl_autoload_register(function ($class) {
-    // Replacing all back slashes to forward slashes (/ for Windows)
-    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
-    require basePath("{$class}.php");
-});
-*/
-
 // Requiring the container which contains singleton classes like our Database
 require basePath('bootstrap.php');
 

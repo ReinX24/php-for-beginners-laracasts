@@ -1,0 +1,16 @@
+{
+    "name": "reinx/event-app",
+    "authors": [
+        {
+            "name": "Rein",
+            "email": "reinX244@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "Http\\": "Http/"
+        }
+    }
+}
