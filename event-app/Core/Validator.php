@@ -26,4 +26,9 @@ class Validator
     ): bool {
         return $value > $greaterThan;
     }
+
+    public static function time($startTime, $endTime)
+    {
+        return $startTime < $endTime;
+    }
 }
