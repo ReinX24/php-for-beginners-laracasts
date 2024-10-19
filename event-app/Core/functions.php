@@ -61,5 +61,5 @@ function old($key, $default = "")
 
 function convertTime($time)
 {
-    return date("h:i:s A", strtotime($time));
+    return date("h:i A", strtotime($time));
 }

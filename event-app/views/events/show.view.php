@@ -12,10 +12,13 @@
         </form>
     </div>
 
+    <a href="/attendee/add" class="btn btn-success mb-4">Add Attendee</a>
+
     <!-- Showing selected event info -->
     <h4>Location: <?= htmlspecialchars($event['place']); ?></h4>
     <p>Start time: <?= convertTime($event["start_time"]) ?></p>
     <p>End time: <?= convertTime($event["end_time"]) ?></p>
+    <p>Date: <?= $event["date"] ?></p>
 
     <h4>Attendees:</h4>
     <ul class="list-group">

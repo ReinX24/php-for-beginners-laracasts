@@ -1,5 +1,7 @@
 <?php
 
+use Pest\Plugins\Only;
+
 $router->get('/', 'index.php');
 $router->get('/about', 'about.php');
 $router->get('/contact', 'contact.php');
@@ -22,6 +24,10 @@ $router->post('/event/create', 'events/store.php')->only('auth')->only('admin');
 
 $router->get('/event/edit', 'events/edit.php')->only('auth')->only('admin');
 $router->patch('/event/edit', 'events/update.php')->only('auth')->only('admin');
+
+// TODO: create event delete
+
+$router->get('/attendee/add', 'attendees/create.php')->only('auth')->only('admin');
 
 $router->get('/register', 'registration/create.php')->only('guest'); // goes to register page
 $router->post('/register', 'registration/store.php')->only('guest'); // goes to registration controller

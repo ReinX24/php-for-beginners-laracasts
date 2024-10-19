@@ -34,10 +34,10 @@ if (!Validator::time($_POST['start-time'], $_POST['end-time'])) {
     $errors['invalid-time'] = "Start time should be earlier than end time.";
 }
 
-if (!empty($errors)) {
-    view('events/create.view.php', [
-        'heading' => 'Create Event',
-        'errors' => $errors
+if (count($errors)) {
+    view('events/edit.view.php', [
+        'heading' => 'Edit Event',
+        'event' => $event,
     ]);
 }
 

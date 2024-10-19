@@ -5,8 +5,9 @@
 <?php require basePath('views/partials/banner.php'); ?>
 
 <div class="container col-8 p-4">
-    <form action="/event/edit" method="POST">
+    <form action="/event/edit?id=<?= $_GET["id"] ?>" method="POST">
         <input type="hidden" name="_method" value="PATCH">
+        <input type="hidden" name="id" value="<?= $event["id"] ?>">
 
         <div class="d-flex gap-2 mb-4">
             <button type="submit" class="btn btn-primary">Update</button>
@@ -18,7 +19,7 @@
         </div>
 
         <?php if (isset($errors['event-name'])) : ?>
-            <p class="text-danger mt-2"><?= $errors['event_name'] ?></p>
+            <p class="text-danger mt-2"><?= $errors['event-name'] ?></p>
         <?php endif; ?>
 
         <div class="mb-3">
@@ -27,7 +28,7 @@
         </div>
 
         <?php if (isset($errors['start-time'])) : ?>
-            <p class="text-danger mt-2"><?= $errors['start_time'] ?></p>
+            <p class="text-danger mt-2"><?= $errors['start-time'] ?></p>
         <?php endif; ?>
 
         <div class="mb-3">
