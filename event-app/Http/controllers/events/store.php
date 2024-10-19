@@ -41,8 +41,20 @@ if (!empty($errors)) {
     ]);
 }
 
-// TODO: if there are no errors, add the event to the database
 if (empty($errors)) {
-    var_dump($_POST);
-    // var_dump($_SESSION);
+    $db->query("
+            INSERT INTO 
+                events (event_name, start_time, end_time, date, place)
+            VALUES
+                (:event_name, :start_time, :end_time, :date, :place)
+            ", [
+        "event_name" => $_POST["event-name"],
+        "start_time" => $_POST["start-time"],
+        "end_time" => $_POST["end-time"],
+        "date" => $_POST["date"],
+        "place" => $_POST["place"]
+    ]);
+
+    header("Location: /events");
+    exit;
 }

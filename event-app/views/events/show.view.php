@@ -5,6 +5,13 @@
 <?php require basePath('views/partials/banner.php'); ?>
 
 <div class="container col-8 p-4">
+    <div class="d-flex gap-2 mb-4">
+        <a href="/event/edit?id=<?= $event['id'] ?>" class="btn btn-primary">Edit</a>
+        <form action="">
+            <button class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+
     <!-- Showing selected event info -->
     <h4>Location: <?= htmlspecialchars($event['place']); ?></h4>
     <p>Start time: <?= convertTime($event["start_time"]) ?></p>
