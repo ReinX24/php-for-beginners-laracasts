@@ -26,6 +26,15 @@
         <?php endif ?>
 
         <div class="mb-3">
+            <label for="year-program-block" class="form-label">Year, Program, and Block (ex. 11-ITE-01)</label>
+            <input type="text" name="year-program-block" class="form-control" value="<?= old("year-program-block"); ?>">
+        </div>
+
+        <?php if (isset($errors['year-program-block'])) : ?>
+            <p class="text-danger"><?= $errors['year-program-block']; ?></p>
+        <?php endif ?>
+
+        <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" name="password" class="form-control">
         </div>

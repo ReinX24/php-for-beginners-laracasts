@@ -24,6 +24,13 @@
                     " href="/events">Events</a>
                 </li>
             <?php endif; ?>
+            <?php if (isset($_SESSION["user"]["role"]) && $_SESSION["user"]["role"] === "user") : ?>
+                <li class="nav-item">
+                    <a class="nav-link
+                        <?= urlIs('/account') ? "active" : "" ?>
+                    " href="/account">Events</a>
+                </li>
+            <?php endif; ?>
             <li class="nav-item">
                 <a class="nav-link
                         <?= urlIs('/contact') ? "active" : "" ?>

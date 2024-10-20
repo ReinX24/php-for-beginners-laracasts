@@ -31,7 +31,7 @@ class Authenticator
         return false;
     }
 
-    public function attemptRegister($username, $email, $password)
+    public function attemptRegister($username, $email, $password, $yearProgramBlock)
     {
         $db = App::resolve(Database::class);
         // Check if the account already exists
@@ -48,11 +48,12 @@ class Authenticator
         } else {
             // If not, save one to the database, and then log the user in, and redirect.
             $db->query(
-                "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)",
+                "INSERT INTO users (username, email, password, year_program_block) VALUES (:username, :email, :password, :year_program_block)",
                 [
                     'username' => $username,
                     'email' => $email,
-                    'password' => password_hash($password, PASSWORD_DEFAULT)
+                    'password' => password_hash($password, PASSWORD_DEFAULT),
+                    'year_program_block' => $yearProgramBlock
                 ]
             );
 
@@ -63,7 +64,8 @@ class Authenticator
             // Mark that the user has logged in.
             $this->login([
                 'id' => $user["id"],
-                'email' => $email
+                'email' => $user["email"],
+                'year_program_block' => $user["year_program_block"]
             ]);
 
             return true;
