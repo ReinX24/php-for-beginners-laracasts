@@ -28,7 +28,7 @@
                 <li class="nav-item">
                     <a class="nav-link
                         <?= urlIs('/account') ? "active" : "" ?>
-                    " href="/account">Events</a>
+                    " href="/account">Account</a>
                 </li>
             <?php endif; ?>
             <li class="nav-item">

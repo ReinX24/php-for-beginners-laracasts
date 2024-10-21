@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2024 at 02:58 AM
+-- Generation Time: Oct 21, 2024 at 05:06 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -55,6 +55,7 @@ CREATE TABLE `users` (
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `role` varchar(255) NOT NULL DEFAULT 'user',
+  `year_program_block` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -62,9 +63,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `role`, `password`) VALUES
-(1, 'Rein', 'rein@gmail.com', 'admin', '$2y$10$u4b6LGWiQtoc8GDw/t8pNOlU/p.p3lMYJ.cBMt.GdUTnzoSpxUfS.'),
-(2, 'John', 'john@gmail.com', 'user', '$2y$10$DTCrVqoDQfrwHt8VtyPRZu.r.Z3y/Rw3RBp1SBzhAbhsFQDrTkJxG');
+INSERT INTO `users` (`id`, `username`, `email`, `role`, `year_program_block`, `password`) VALUES
+(1, 'Rein', 'rein@gmail.com', 'admin', '32-ITE-01', '$2y$10$u4b6LGWiQtoc8GDw/t8pNOlU/p.p3lMYJ.cBMt.GdUTnzoSpxUfS.'),
+(2, 'John', 'john@gmail.com', 'user', '31-ITE-01', '$2y$10$DTCrVqoDQfrwHt8VtyPRZu.r.Z3y/Rw3RBp1SBzhAbhsFQDrTkJxG'),
+(3, 'Jane Doe', 'jane@example.com', 'user', '11-ITE-01', '$2y$10$PoWBGptKWWBFYqY6S78sp.v/WlPmD5US20./L77eOTd8SEx0Et2Eq');
 
 --
 -- Indexes for dumped tables
@@ -96,7 +98,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
