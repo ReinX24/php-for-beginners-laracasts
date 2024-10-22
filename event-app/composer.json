@@ -6,7 +6,9 @@
             "email": "reinX244@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "endroid/qr-code": "^6.0"
+    },
     "autoload": {
         "psr-4": {
             "Core\\": "Core/",

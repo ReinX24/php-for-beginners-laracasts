@@ -19,8 +19,10 @@ class Authenticator
                 // Log in the user if the credentials match.
                 $this->login([
                     'id' => $user["id"],
+                    'username' => $user["username"],
                     'email' => $user["email"],
-                    'role' => $user["role"]
+                    'role' => $user["role"],
+                    'year_program_block' => $user["year_program_block"]
                 ]);
 
                 // If the password is verified, then the user is authenticated.
@@ -64,7 +66,9 @@ class Authenticator
             // Mark that the user has logged in.
             $this->login([
                 'id' => $user["id"],
+                'username' => $user["username"],
                 'email' => $user["email"],
+                'role' => $user["role"],
                 'year_program_block' => $user["year_program_block"]
             ]);
 
@@ -75,9 +79,11 @@ class Authenticator
     public function login($user)
     {
         $_SESSION['user'] = [
-            'id' => $user['id'],
-            'email' => $user['email'],
-            'role' => $user['role']
+            'id' => $user["id"],
+            'username' => $user["username"],
+            'email' => $user["email"],
+            'role' => $user["role"],
+            'year_program_block' => $user["year_program_block"]
         ];
 
         session_regenerate_id(true);

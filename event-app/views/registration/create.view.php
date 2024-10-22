@@ -27,7 +27,7 @@
 
         <div class="mb-3">
             <label for="year-program-block" class="form-label">Year, Program, and Block (ex. 11-ITE-01)</label>
-            <input type="text" name="year-program-block" class="form-control" value="<?= old("year-program-block"); ?>">
+            <input type="text" name="year-program-block" class="form-control" value="<?= old("year_program_block"); ?>">
         </div>
 
         <?php if (isset($errors['year-program-block'])) : ?>
