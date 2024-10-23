@@ -25,6 +25,7 @@ $router->post('/event/create', 'events/store.php')->only('auth')->only('admin');
 $router->get('/event/edit', 'events/edit.php')->only('auth')->only('admin');
 $router->patch('/event/edit', 'events/update.php')->only('auth')->only('admin');
 $router->get('/event/delete', 'events/delete.php')->only('auth')->only('admin');
+$router->post('/event/delete', 'events/destroy.php')->only('auth')->only('admin');
 
 $router->get('/attendee/add', 'attendees/create.php')->only('auth')->only('admin');
 
