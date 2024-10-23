@@ -23,6 +23,12 @@
                         <?= urlIs('/events') ? "active" : "" ?>
                     " href="/events">Events</a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link
+                        <?= urlIs('/account') ? "active" : "" ?>
+                    " href="/account">Account</a>
+                </li>
             <?php endif; ?>
             <?php if (isset($_SESSION["user"]["role"]) && $_SESSION["user"]["role"] === "user") : ?>
                 <li class="nav-item">

@@ -18,7 +18,7 @@ $builder = new Builder(
     writer: new PngWriter(),
     writerOptions: [],
     validateResult: false,
-    data: 'Custom QR code contents',
+    data: json_encode($_SESSION["user"]),
     encoding: new Encoding('UTF-8'),
     errorCorrectionLevel: ErrorCorrectionLevel::High,
     size: 300,
@@ -27,7 +27,7 @@ $builder = new Builder(
     // logoPath: __DIR__ . '/assets/symfony.png',
     logoResizeToWidth: 50,
     logoPunchoutBackground: true,
-    labelText: 'Rein Aldwin E. Solis',
+    labelText: $_SESSION["user"]["username"],
     labelFont: new OpenSans(20),
     labelAlignment: LabelAlignment::Center
 );
@@ -39,14 +39,12 @@ $result = $builder->build();
 // echo $result->getString();
 
 // Save it to a file
-// TODO: change savepath
-$result->saveToFile(BASE_PATH . '/public/qrcode.png');
+$result->saveToFile(BASE_PATH . "/public/{$_SESSION['user']['username']}_qrcode.png");
 
 // Generate a data URI to include image data inline (i.e. inside an <img> tag)
-$dataUri = $result->getDataUri();
-// var_dump($dataUri);
+$qrCodeData = $result->getDataUri();
 
 view('accounts/index.view.php', [
     'heading' => 'Account',
-    'qrcode' => $dataUri
+    'qrPath' => $_SESSION["user"]["username"] . "_qrcode.png"
 ]);

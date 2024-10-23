@@ -11,7 +11,7 @@
 
         <div class="d-flex gap-2 mb-4">
             <button type="submit" class="btn btn-primary">Update</button>
-            <a href="/events" class="btn btn-secondary">Cancel</a>
+            <a href="/event?id=<?= $_GET["id"] ?>" class="btn btn-secondary">Cancel</a>
         </div>
         <div class="mb-3">
             <label for="event-name" class="form-label">Event name</label>
