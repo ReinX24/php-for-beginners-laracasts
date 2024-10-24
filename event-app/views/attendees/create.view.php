@@ -5,26 +5,38 @@
 <?php require basePath('views/partials/banner.php'); ?>
 
 <div class="container">
-    <div id="reader">
+
+    <p>Scan QR Code</p>
+    <div id="reader" class="mb-4">
     </div>
 
-    <form action="/event/create" method="POST">
+    <form action="/attendee/add" method="POST">
         <div class="mb-3">
-            <label for="event-name" class="form-label">Attendee Name</label>
-            <input type="text" name="attendee-name" class="form-control" value="<?= $_POST['attendee-name'] ?? '' ?>">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" name="username" id="username" class="form-control" value="<?= $_POST['username'] ?? '' ?>">
         </div>
 
-        <?php if (isset($errors['attendee-name'])) : ?>
-            <p class="text-danger mt-2"><?= $errors['attendee-name'] ?></p>
+        <?php if (isset($errors['username'])) : ?>
+            <p class="text-danger mt-2"><?= $errors['username'] ?></p>
         <?php endif; ?>
 
         <div class="mb-3">
-            <label for="year-and-block" class="form-label">Year and Block (11 - ITE - 01)</label>
-            <input type="text" name="year-and-block" class="form-control" value="<?= $_POST['year-and-block'] ?? '' ?>">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="email" id="email" class="form-control" value="<?= $_POST['email'] ?? '' ?>">
         </div>
 
-        <?php if (isset($errors['year-and-block'])) : ?>
-            <p class="text-danger mt-2"><?= $errors['year-and-block'] ?></p>
+        <div class="mb-3">
+            <label for="role" class="form-label">Role</label>
+            <input type="role" name="role" id="role" class="form-control" value="<?= $_POST['role'] ?? '' ?>">
+        </div>
+
+        <div class="mb-3">
+            <label for="year_program_block" class="form-label">Year, Program, and Block (11 - ITE - 01)</label>
+            <input type="text" name="year_program_block" id="year_program_block" class="form-control" value="<?= $_POST['year_program_block'] ?? '' ?>">
+        </div>
+
+        <?php if (isset($errors['year_program_block'])) : ?>
+            <p class="text-danger mt-2"><?= $errors['year_program_block'] ?></p>
         <?php endif; ?>
 
         <button type="submit" class="btn btn-primary">Add Attendee</button>
@@ -32,14 +44,35 @@
 </div>
 
 <script>
+    const detectDeviceType = () =>
+        /Mobile|Android|iPhone|iPad/i.test(navigator.userAgent) ?
+        'Mobile' :
+        'Desktop';
+
+    let scannerWidth = 0;
+    let scannerHeight = 0;
+
+    if (detectDeviceType() === "Mobile") {
+        scannerWidth = 200;
+        scannerHeight = 200;
+    } else {
+        scannerWidth = 500;
+        scannerHeight = 500;
+    }
+    // 'Mobile' or 'Desktop'
+
     function onScanSuccess(decodedText, decodedResult) {
         // handle the scanned code as you like, for example:
-        console.log(`Code matched = ${decodedText}`, decodedResult);
+        // console.log(`Code matched = ${decodedText}`, decodedResult);
 
         // Parses the json from the qr code
         const userInfo = JSON.parse(decodedText);
+
+        document.querySelector("#username").value = userInfo.username;
+        document.querySelector("#email").value = userInfo.email;
+        document.querySelector("#role").value = userInfo.role;
+        document.querySelector("#year_program_block").value = userInfo.year_program_block;
         console.log(userInfo);
-        // document.querySelector("#username").textContent = userInfo.username;
 
         // html5QrcodeScanner.clear();
         // ^ this will stop the scanner (video feed) and clear the scan area.
@@ -55,8 +88,8 @@
         "reader", {
             fps: 10,
             qrbox: {
-                width: window.innerWidth * 0.60,
-                height: window.innerHeight * 0.25
+                width: scannerWidth,
+                height: scannerHeight
             }
         },
         /* verbose= */
