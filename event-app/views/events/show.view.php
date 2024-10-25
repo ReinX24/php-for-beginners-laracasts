@@ -10,7 +10,7 @@
         <a href="/event/delete?id=<?= $event['id'] ?>" class="btn btn-lg btn-danger">Delete</a>
     </div>
 
-    <a href="/attendee/add" class="btn btn-lg btn-success mb-4">Add Attendee</a>
+    <a href="/attendee/add?id=<?= $event['id'] ?>" class="btn btn-lg btn-success mb-4">Add Attendee</a>
 
     <!-- Showing selected event info -->
     <h4>Location: <?= htmlspecialchars($event['place']); ?></h4>

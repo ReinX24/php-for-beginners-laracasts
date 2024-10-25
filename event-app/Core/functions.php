@@ -59,6 +59,10 @@ function old($key, $default = "")
     return Core\Session::get("old")[$key] ?? $default;
 }
 
+function error($key, $default = "") {
+    return Core\Session::get("errors")[$key] ?? $default;
+}
+
 function convertTime($time)
 {
     return date("h:i A", strtotime($time));

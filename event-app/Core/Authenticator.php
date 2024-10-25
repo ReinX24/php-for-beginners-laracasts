@@ -76,6 +76,49 @@ class Authenticator
         }
     }
 
+    public function attemptAttend(
+        $username,
+        $email,
+        $role,
+        $year_program_block,
+        $eventId
+    ) {
+        $db = App::resolve(Database::class);
+
+        $event = $db->query("SELECT * FROM events WHERE id = :id", [
+            "id" => $eventId
+        ])->find();
+
+        // If no corresponding event is found
+        if (!$event) {
+            return false;
+        }
+
+        // Check if there are any existing attendees
+        if (!empty($event["attendees"])) {
+        } else {
+            // Insert first array into attendees
+            $newAttendee = json_encode([
+                [
+                    'username' => $username,
+                    'email' => $email,
+                    'role' => $role,
+                    'year_program_block' => $year_program_block
+                ]
+            ]);
+
+            $db->query(
+                "UPDATE FROM events SET attendees = :attendees WHERE id = :id",
+                [
+                    'attendees' => $newAttendee,
+                    'id' => $eventId
+                ]
+            );
+        }
+
+        return true;
+    }
+
     public function login($user)
     {
         $_SESSION['user'] = [
