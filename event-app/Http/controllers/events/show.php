@@ -9,7 +9,10 @@ $event = $db->query("SELECT * FROM events WHERE id = :id", [
     'id' => $_GET["id"]
 ])->findOrFail();
 
+$attendees = json_decode($event["attendees"], true);
+
 view('events/show.view.php', [
     'heading' => $event['event_name'],
-    'event' => $event
+    'event' => $event,
+    'attendees' => $attendees
 ]);

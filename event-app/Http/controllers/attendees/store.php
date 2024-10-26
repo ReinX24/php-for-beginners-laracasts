@@ -29,14 +29,17 @@ $attendanceTaken = (new Authenticator)->attemptAttend(
 
 if (!$attendanceTaken) {
     // TODO: return error when event is not found
-    // $form->error("event not ")
-}   
+    // ! Test this, should go back to events page
+    $form->error("event_not_found", "No matching event found")->throw();
+}
 
-echo "<pre>";
-var_dump($form);
-echo "</pre>";
-exit;
+redirect("/events");
 
-echo "<pre>";
-var_dump($_POST);
-echo "</pre>";
+// echo "<pre>";
+// var_dump($form);
+// echo "</pre>";
+// exit;
+
+// echo "<pre>";
+// var_dump($_POST);
+// echo "</pre>";

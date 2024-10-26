@@ -19,11 +19,14 @@
     <p>Date: <?= $event["date"] ?></p>
 
     <h4>Attendees:</h4>
+    <!-- TODO: add functionality to remove attendee from event -->
     <ul class="list-group">
-        <li class="list-group-item">Jane Doe</li>
-        <li class="list-group-item">John Doe</li>
-        <li class="list-group-item">Jake Doe</li>
-        <li class="list-group-item">Jillian Doe</li>
+        <?php foreach ($attendees as $attendee) : ?>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span><?= $attendee["username"] ?></span>
+                <a href="" class="btn btn-danger">Remove</a>
+            </li>
+        <?php endforeach ?>
     </ul>
 </div>
 

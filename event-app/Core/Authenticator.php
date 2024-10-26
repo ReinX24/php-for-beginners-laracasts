@@ -94,23 +94,40 @@ class Authenticator
             return false;
         }
 
+        $newAttendee = [
+            'username' => $username,
+            'email' => $email,
+            'role' => $role,
+            'year_program_block' => $year_program_block
+        ];
+
         // Check if there are any existing attendees
         if (!empty($event["attendees"])) {
+            // If there are already attendees, get data and add new attendee data
+            // Data is returned as an associative array
+            $existingAttendees = json_decode($event["attendees"], true);
+
+            array_push($existingAttendees, $newAttendee);
+
+            $existingAttendees = json_encode($existingAttendees);
+
+            $db->query(
+                "UPDATE events SET attendees = :attendees WHERE id = :id",
+                [
+                    'attendees' => $existingAttendees,
+                    'id' => $eventId
+                ]
+            );
         } else {
             // Insert first array into attendees
-            $newAttendee = json_encode([
-                [
-                    'username' => $username,
-                    'email' => $email,
-                    'role' => $role,
-                    'year_program_block' => $year_program_block
-                ]
+            $firstAttendee = json_encode([
+                $newAttendee
             ]);
 
             $db->query(
-                "UPDATE FROM events SET attendees = :attendees WHERE id = :id",
+                "UPDATE events SET attendees = :attendees WHERE id = :id",
                 [
-                    'attendees' => $newAttendee,
+                    'attendees' => $firstAttendee,
                     'id' => $eventId
                 ]
             );
