@@ -12,12 +12,16 @@
     <form action="/attendee/add" method="POST">
         <input type="hidden" name="id" value="<?= $_GET["id"] ?>">
 
+        <?php if (!empty(error("event_not_found"))) : ?>
+            <p class="text-danger mt-2"><?= error("event_not_found") ?></p>
+        <?php endif; ?>
+
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input type="text" name="username" id="username" class="form-control" value="<?= old("username") ?>">
         </div>
 
-        <?php if (isset(\Core\Session::get("errors")["username"])) : ?>
+        <?php if (!empty(error("username"))) : ?>
             <p class="text-danger mt-2"><?= error("username") ?></p>
         <?php endif; ?>
 
@@ -26,7 +30,7 @@
             <input type="email" name="email" id="email" class="form-control" value="<?= old("email") ?>">
         </div>
 
-        <?php if (isset(\Core\Session::get("errors")["email"])) : ?>
+        <?php if (!empty(error("email"))) : ?>
             <p class="text-danger mt-2"><?= error("email") ?></p>
         <?php endif; ?>
 
@@ -35,7 +39,7 @@
             <input type="role" name="role" id="role" class="form-control" value="<?= old("role") ?>">
         </div>
 
-        <?php if (isset(\Core\Session::get("errors")["role"])) : ?>
+        <?php if (!empty(error("role"))) : ?>
             <p class="text-danger mt-2"><?= error("role") ?></p>
         <?php endif; ?>
 
@@ -44,7 +48,7 @@
             <input type="text" name="year_program_block" id="year_program_block" class="form-control" value="<?= old("year_program_block") ?>">
         </div>
 
-        <?php if (isset(\Core\Session::get("errors")["year_program_block"])) : ?>
+        <?php if (!empty(error("year_program_block"))) : ?>
             <p class="text-danger mt-2"><?= error("year_program_block") ?></p>
         <?php endif; ?>
 

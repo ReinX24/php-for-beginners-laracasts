@@ -35,9 +35,9 @@ if (!Validator::time($_POST['start-time'], $_POST['end-time'])) {
 }
 
 if (count($errors)) {
-    view('events/edit.view.php', [
-        'heading' => 'Edit Event',
-        'event' => $event,
+    view('events/create.view.php', [
+        'heading' => 'Create Event',
+        'errors' => $errors
     ]);
 }
 

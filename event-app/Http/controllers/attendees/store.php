@@ -1,13 +1,9 @@
 <?php
 
-// use Core\App;
-// use Core\Database;
-// use Core\Validator;
-
-// $db = App::resolve(Database::class);
-
 use Core\Authenticator;
 use Http\Forms\AttendeeForm;
+
+// TODO: store the current time as the time-in
 
 $attributes = [
     "username" => $_POST["username"],
@@ -15,6 +11,7 @@ $attributes = [
     "role" => $_POST["role"],
     "year_program_block" => $_POST["year_program_block"]
 ];
+
 $eventId = $_POST["id"];
 
 $form = AttendeeForm::validate($attributes);
@@ -28,9 +25,8 @@ $attendanceTaken = (new Authenticator)->attemptAttend(
 );
 
 if (!$attendanceTaken) {
-    // TODO: return error when event is not found
-    // ! Test this, should go back to events page
-    $form->error("event_not_found", "No matching event found")->throw();
+    // This error is thrown when the user edits the event id using inspect.
+    $form->error("event_not_found", "No matching event found.")->throw();
 }
 
 redirect("/events");

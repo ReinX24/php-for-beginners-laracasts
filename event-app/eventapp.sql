@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 21, 2024 at 05:06 PM
+-- Generation Time: Oct 27, 2024 at 04:33 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -33,16 +33,16 @@ CREATE TABLE `events` (
   `start_time` time NOT NULL,
   `end_time` time NOT NULL,
   `date` date NOT NULL,
-  `place` varchar(255) NOT NULL
+  `place` varchar(255) NOT NULL,
+  `attendees` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `event_name`, `start_time`, `end_time`, `date`, `place`) VALUES
-(1, 'Event 1', '01:02:10', '01:03:10', '2024-10-17', 'Leisure Coast Resort'),
-(2, 'Event 2', '01:05:18', '02:05:18', '2024-10-17', 'Audio Visual Theatre');
+INSERT INTO `events` (`id`, `event_name`, `start_time`, `end_time`, `date`, `place`, `attendees`) VALUES
+(2, 'Event 2', '01:05:18', '02:05:18', '2024-10-17', 'Audio Visual Theatre', '[{\"username\":\"John\",\"email\":\"john@gmail.com\",\"role\":\"user\",\"year_program_block\":\"31-ITE-01\"},{\"username\":\"John\",\"email\":\"john@gmail.com\",\"role\":\"user\",\"year_program_block\":\"31-ITE-01\"},{\"username\":\"John\",\"email\":\"john@gmail.com\",\"role\":\"user\",\"year_program_block\":\"31-ITE-01\"}]');
 
 -- --------------------------------------------------------
 
@@ -66,7 +66,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `email`, `role`, `year_program_block`, `password`) VALUES
 (1, 'Rein', 'rein@gmail.com', 'admin', '32-ITE-01', '$2y$10$u4b6LGWiQtoc8GDw/t8pNOlU/p.p3lMYJ.cBMt.GdUTnzoSpxUfS.'),
 (2, 'John', 'john@gmail.com', 'user', '31-ITE-01', '$2y$10$DTCrVqoDQfrwHt8VtyPRZu.r.Z3y/Rw3RBp1SBzhAbhsFQDrTkJxG'),
-(3, 'Jane Doe', 'jane@example.com', 'user', '11-ITE-01', '$2y$10$PoWBGptKWWBFYqY6S78sp.v/WlPmD5US20./L77eOTd8SEx0Et2Eq');
+(3, 'Jane Doe', 'jane@example.com', 'user', '11-ITE-01', '$2y$10$PoWBGptKWWBFYqY6S78sp.v/WlPmD5US20./L77eOTd8SEx0Et2Eq'),
+(4, 'Jake Doe', 'jake@example.com', 'user', '31-ITE-01', '$2y$10$NAuEdWcO3V4HLrZ2SrjvX.X72lE78ajGTe8HcOsc//Xp6Dop5jR1i');
 
 --
 -- Indexes for dumped tables
@@ -92,13 +93,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
