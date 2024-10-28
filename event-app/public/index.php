@@ -7,6 +7,8 @@ const BASE_PATH = __DIR__ . "/../"; // points to demo folder
 
 require BASE_PATH . "/vendor/autoload.php";
 
+date_default_timezone_set("Asia/Manila"); // setting time zone
+
 session_start();
 
 require BASE_PATH . 'Core/functions.php';

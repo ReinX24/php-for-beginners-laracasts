@@ -98,7 +98,8 @@ class Authenticator
             'username' => $username,
             'email' => $email,
             'role' => $role,
-            'year_program_block' => $year_program_block
+            'year_program_block' => $year_program_block,
+            'time-in' => date("h:i:sa")
         ];
 
         // Check if there are any existing attendees

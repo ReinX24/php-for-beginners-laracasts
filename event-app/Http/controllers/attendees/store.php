@@ -29,7 +29,7 @@ if (!$attendanceTaken) {
     $form->error("event_not_found", "No matching event found.")->throw();
 }
 
-redirect("/events");
+redirect("/event?id=" . $eventId);
 
 // echo "<pre>";
 // var_dump($form);

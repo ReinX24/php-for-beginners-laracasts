@@ -9,7 +9,7 @@
     <p>Scan QR Code</p>
     <div id="reader" class="mb-4"></div>
 
-    <form action="/attendee/add" method="POST">
+    <form action="/attendee/add" method="POST" class="mb-2">
         <input type="hidden" name="id" value="<?= $_GET["id"] ?>">
 
         <?php if (!empty(error("event_not_found"))) : ?>
