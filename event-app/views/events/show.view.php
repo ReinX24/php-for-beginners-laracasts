@@ -20,19 +20,19 @@
 
     <h4>Attendees:</h4>
     <a href="/attendee/add?id=<?= $event['id'] ?>" class="btn btn-lg btn-success mb-4">Add Attendee</a>
-    <!-- TODO: add functionality to remove attendee from event -->
     <?php if (isset($attendees)) : ?>
-        <ul class="list-group">
+        <div class="list-group">
             <?php foreach ($attendees as $attendee) : ?>
-                <!-- TODO: when clicking the link, show more info regarding the attendee -->
-                <a href="#">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span><?= $attendee["username"] ?></span>
-                        <a href="" class="btn btn-lg btn-danger">Remove</a>
-                    </li>
+                <a href="/attendee?<?= http_build_query($attendee) ?>" class="list-group-item list-group-item-action fs-5">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1"><?= $attendee["username"] ?></h5>
+                        <!-- <small><?= $attendee["role"] ?></small> -->
+                    </div>
+                    <p class="mb-1"><?= $attendee["year_program_block"] ?></p>
+                    <small><?= $attendee["time-in"] ?></small>
                 </a>
             <?php endforeach ?>
-        </ul>
+        </div>
     <?php else : ?>
         <p>No attendees currently recorded.</p>
     <?php endif; ?>

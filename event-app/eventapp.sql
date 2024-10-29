@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2024 at 04:33 PM
+-- Generation Time: Oct 29, 2024 at 04:09 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,22 @@ SET time_zone = "+00:00";
 --
 -- Database: `eventapp`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendances`
+--
+
+CREATE TABLE `attendances` (
+  `id` int(11) NOT NULL,
+  `event_id` int(11) NOT NULL,
+  `event_name` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `role` varchar(255) NOT NULL,
+  `year_program_block` varchar(255) NOT NULL,
+  `time_in` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -42,7 +58,7 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `event_name`, `start_time`, `end_time`, `date`, `place`, `attendees`) VALUES
-(2, 'Event 2', '01:05:18', '02:05:18', '2024-10-17', 'Audio Visual Theatre', '[{\"username\":\"John\",\"email\":\"john@gmail.com\",\"role\":\"user\",\"year_program_block\":\"31-ITE-01\"},{\"username\":\"John\",\"email\":\"john@gmail.com\",\"role\":\"user\",\"year_program_block\":\"31-ITE-01\"},{\"username\":\"John\",\"email\":\"john@gmail.com\",\"role\":\"user\",\"year_program_block\":\"31-ITE-01\"}]');
+(2, 'Event 2', '01:05:18', '02:05:18', '2024-10-17', 'Audio Visual Theatre', '[{\"username\":\"John\",\"email\":\"john@gmail.com\",\"role\":\"user\",\"year_program_block\":\"31-ITE-01\",\"time-in\":\"11:06:05pm\"},{\"username\":\"John\",\"email\":\"john@gmail.com\",\"role\":\"user\",\"year_program_block\":\"31-ITE-01\",\"time-in\":\"11:30:22pm\"}]');
 
 -- --------------------------------------------------------
 
@@ -74,6 +90,13 @@ INSERT INTO `users` (`id`, `username`, `email`, `role`, `year_program_block`, `p
 --
 
 --
+-- Indexes for table `attendances`
+--
+ALTER TABLE `attendances`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `event_id` (`event_id`);
+
+--
 -- Indexes for table `events`
 --
 ALTER TABLE `events`
@@ -90,6 +113,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `attendances`
+--
+ALTER TABLE `attendances`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
@@ -100,6 +129,16 @@ ALTER TABLE `events`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `attendances`
+--
+ALTER TABLE `attendances`
+  ADD CONSTRAINT `event_id` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

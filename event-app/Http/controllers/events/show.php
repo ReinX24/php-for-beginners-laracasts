@@ -11,6 +11,10 @@ $event = $db->query("SELECT * FROM events WHERE id = :id", [
 
 $attendees = json_decode($event["attendees"], true);
 
+// echo "<pre>";
+// var_dump($attendees);
+// echo "</pre>";
+
 view('events/show.view.php', [
     'heading' => $event['event_name'],
     'event' => $event,

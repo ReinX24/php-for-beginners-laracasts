@@ -3,8 +3,6 @@
 use Core\Authenticator;
 use Http\Forms\AttendeeForm;
 
-// TODO: store the current time as the time-in
-
 $attributes = [
     "username" => $_POST["username"],
     "email" => $_POST["email"],

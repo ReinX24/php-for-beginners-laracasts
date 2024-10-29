@@ -77,7 +77,7 @@ class Authenticator
     }
 
     public function attemptAttend(
-        $username,
+        $name,
         $email,
         $role,
         $year_program_block,
@@ -94,14 +94,19 @@ class Authenticator
             return false;
         }
 
-        $newAttendee = [
-            'username' => $username,
+        // TODO: change the way attendaces are recorded
+
+        $newAttendance = [
+            'event_id' => $event["id"],
+            'event_name' => $event["event_name"],
+            'name' => $name,
             'email' => $email,
             'role' => $role,
             'year_program_block' => $year_program_block,
-            'time-in' => date("h:i:sa")
+            // 'time_in' => date("h:i:sa")
         ];
 
+        /*
         // Check if there are any existing attendees
         if (!empty($event["attendees"])) {
             // If there are already attendees, get data and add new attendee data
@@ -133,6 +138,8 @@ class Authenticator
                 ]
             );
         }
+
+        */
 
         return true;
     }
