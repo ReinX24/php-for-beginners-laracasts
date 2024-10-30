@@ -25,11 +25,11 @@
             <?php foreach ($attendees as $attendee) : ?>
                 <a href="/attendee?<?= http_build_query($attendee) ?>" class="list-group-item list-group-item-action fs-5">
                     <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1"><?= $attendee["username"] ?></h5>
+                        <h5 class="mb-1"><?= $attendee["name"] ?></h5>
                         <!-- <small><?= $attendee["role"] ?></small> -->
                     </div>
                     <p class="mb-1"><?= $attendee["year_program_block"] ?></p>
-                    <small><?= $attendee["time-in"] ?></small>
+                    <small><?= $attendee["time_in"] ?></small>
                 </a>
             <?php endforeach ?>
         </div>

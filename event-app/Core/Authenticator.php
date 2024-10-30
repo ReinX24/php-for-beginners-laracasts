@@ -94,8 +94,6 @@ class Authenticator
             return false;
         }
 
-        // TODO: change the way attendaces are recorded
-
         $newAttendance = [
             'event_id' => $event["id"],
             'event_name' => $event["event_name"],
@@ -103,8 +101,21 @@ class Authenticator
             'email' => $email,
             'role' => $role,
             'year_program_block' => $year_program_block,
-            // 'time_in' => date("h:i:sa")
         ];
+
+        $db->query(
+            "INSERT INTO attendances 
+                        (event_id, event_name, name, role, year_program_block, time_in)
+                    VALUES
+                        (:event_id, :event_name, :name, :role, :year_program_block, NOW())",
+            [
+                'event_id' => $newAttendance["event_id"],
+                'event_name' => $newAttendance["event_name"],
+                'name' => $newAttendance["name"],
+                'role' => $newAttendance["role"],
+                'year_program_block' => $newAttendance["year_program_block"],
+            ]
+        );
 
         /*
         // Check if there are any existing attendees
