@@ -1,6 +1,6 @@
 <?php
 
-$qrcodeUrl = $_SESSION["user"]["username"] . "_qrcode.png";
+$qrcodeUrl = BASE_PATH . "public/qrcodes/" . $_SESSION["user"]["username"] . "_qrcode.png";
 
 if (file_exists($qrcodeUrl)) {
     header('Content-Type: image/png');
@@ -11,5 +11,5 @@ if (file_exists($qrcodeUrl)) {
 
 view('accounts/index.view.php', [
     'heading' => 'Account',
-    'qrPath' => $_SESSION["user"]["username"] . "_qrcode.png"
+    'qrPath' =>  "/qrcodes/" . $_SESSION["user"]["username"] . "_qrcode.png"
 ]);

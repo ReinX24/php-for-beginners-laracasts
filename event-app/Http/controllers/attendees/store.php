@@ -14,6 +14,7 @@ $eventId = $_POST["id"];
 
 $form = AttendeeForm::validate($attributes);
 
+// TODO: store the current user's id in the attendance table
 $attendanceTaken = (new Authenticator)->attemptAttend(
     $attributes["username"],
     $attributes["email"],

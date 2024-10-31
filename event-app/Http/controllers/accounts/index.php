@@ -39,12 +39,12 @@ $result = $builder->build();
 // echo $result->getString();
 
 // Save it to a file
-$result->saveToFile(BASE_PATH . "/public/{$_SESSION['user']['username']}_qrcode.png");
+$result->saveToFile(BASE_PATH . "public/qrcodes/{$_SESSION['user']['username']}_qrcode.png");
 
 // Generate a data URI to include image data inline (i.e. inside an <img> tag)
 $qrCodeData = $result->getDataUri();
 
 view('accounts/index.view.php', [
     'heading' => 'Account',
-    'qrPath' => $_SESSION["user"]["username"] . "_qrcode.png"
+    'qrPath' =>  "/qrcodes/" . $_SESSION["user"]["username"] . "_qrcode.png"
 ]);

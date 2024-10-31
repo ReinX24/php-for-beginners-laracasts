@@ -5,13 +5,20 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
-$event = $db->query("SELECT * FROM events WHERE id = :id", [
-    'id' => $_GET["id"]
-])->findOrFail();
+$event = $db->query(
+    "SELECT * FROM events WHERE id = :id",
+    [
+        'id' => $_GET["id"]
+    ]
+)->findOrFail();
 
-$attendees = $db->query("SELECT * FROM attendances WHERE event_id = :event_id", [
-    'event_id' => $_GET["id"]
-])->get();
+$attendees = $db->query(
+    "SELECT * FROM attendances 
+    WHERE event_id = :event_id ORDER BY time_in DESC",
+    [
+        'event_id' => $_GET["id"]
+    ]
+)->get();
 
 // echo "<pre>";
 // var_dump($attendees);
