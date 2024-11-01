@@ -2,6 +2,7 @@
 
 use Core\Authenticator;
 use Http\Forms\AttendeeForm;
+use Core\Session;
 
 $attributes = [
     "username" => $_POST["username"],
@@ -14,8 +15,8 @@ $eventId = $_POST["id"];
 
 $form = AttendeeForm::validate($attributes);
 
-// TODO: store the current user's id in the attendance table
 $attendanceTaken = (new Authenticator)->attemptAttend(
+    $_POST["id"],
     $attributes["username"],
     $attributes["email"],
     $attributes["role"],

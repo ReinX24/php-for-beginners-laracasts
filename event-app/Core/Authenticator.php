@@ -77,6 +77,7 @@ class Authenticator
     }
 
     public function attemptAttend(
+        $userId,
         $name,
         $email,
         $role,
@@ -97,6 +98,7 @@ class Authenticator
         $newAttendance = [
             'event_id' => $event["id"],
             'event_name' => $event["event_name"],
+            'user_id' => $userId,
             'name' => $name,
             'email' => $email,
             'role' => $role,
@@ -105,14 +107,15 @@ class Authenticator
 
         $db->query(
             "INSERT INTO attendances 
-                        (event_id, event_name, name, email, role, year_program_block, time_in)
+                        (event_id, event_name, user_id, name, email, role, year_program_block, time_in)
                     VALUES
-                        (:event_id, :event_name, :name, :email, :role, :year_program_block, NOW())",
+                        (:event_id, :event_name, :user_id,:name, :email, :role, :year_program_block, NOW())",
             [
                 'event_id' => $newAttendance["event_id"],
                 'event_name' => $newAttendance["event_name"],
+                'user_id' => $newAttendance["user_id"],
                 'name' => $newAttendance["name"],
-                'email'=> $newAttendance["email"],
+                'email' => $newAttendance["email"],
                 'role' => $newAttendance["role"],
                 'year_program_block' => $newAttendance["year_program_block"],
             ]

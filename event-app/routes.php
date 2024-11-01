@@ -30,6 +30,7 @@ $router->post('/event/delete', 'events/destroy.php')->only('auth')->only('admin'
 $router->get('/attendee', 'attendees/show.php')->only('auth')->only('admin');
 $router->get('/attendee/add', 'attendees/create.php')->only('auth')->only('admin');
 $router->post('/attendee/add', 'attendees/store.php')->only('auth')->only('admin');
+// TODO: add remove attendee feature
 
 $router->get('/account', 'accounts/index.php')->only('auth');
 $router->get('/account/delete', 'accounts/delete.php')->only('auth');
