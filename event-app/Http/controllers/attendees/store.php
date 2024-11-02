@@ -16,7 +16,7 @@ $eventId = $_POST["id"];
 $form = AttendeeForm::validate($attributes);
 
 $attendanceTaken = (new Authenticator)->attemptAttend(
-    $_POST["id"],
+    (int) $_POST["id"], // TODO: should get the user id not event id
     $attributes["username"],
     $attributes["email"],
     $attributes["role"],

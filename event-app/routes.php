@@ -33,6 +33,10 @@ $router->post('/attendee/add', 'attendees/store.php')->only('auth')->only('admin
 // TODO: add remove attendee feature
 
 $router->get('/account', 'accounts/index.php')->only('auth');
+// TODO: finish account edit feature
+$router->get('/account/edit', 'accounts/edit.php')->only('auth');
+$router->patch('/account/update', 'accounts/update.php')->only('auth');
+
 $router->get('/account/delete', 'accounts/delete.php')->only('auth');
 $router->post('/account/destroy', 'accounts/destroy.php')->only('auth');
 $router->get('/account/downloadqr', 'accounts/downloadqr.php')->only('auth');
