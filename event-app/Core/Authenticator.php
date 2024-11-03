@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use function Illuminate\Events\queueable;
+
 class Authenticator
 {
     public function attemptLogin($email, $password)
@@ -86,13 +88,28 @@ class Authenticator
     ) {
         $db = App::resolve(Database::class);
 
+        // Checking if the user in the qr code exists
+        $db->query("SELECT * FROM users WHERE id = :id", [
+            "id" => $userId
+        ])->findOrFail();
+
+        // TODO: check if the user in the qr code has already been added
+        $attendee = $db->query("SELECT * FROM attendances WHERE user_id = :user_id", [
+            "user_id" => $userId
+        ]);
+
+        // If the user has already been recorded to have attended the event
+        if ($attendee) {
+            return ["error" => "User already attended event."];
+        }
+
         $event = $db->query("SELECT * FROM events WHERE id = :id", [
             "id" => $eventId
         ])->find();
 
         // If no corresponding event is found
         if (!$event) {
-            return false;
+            return ["event_not_found" => "Event not found."];
         }
 
         $newAttendance = [
@@ -109,7 +126,7 @@ class Authenticator
             "INSERT INTO attendances 
                         (event_id, event_name, user_id, name, email, role, year_program_block, time_in)
                     VALUES
-                        (:event_id, :event_name, :user_id,:name, :email, :role, :year_program_block, NOW())",
+                        (:event_id, :event_name, :user_id, :name, :email, :role, :year_program_block, NOW())",
             [
                 'event_id' => $newAttendance["event_id"],
                 'event_name' => $newAttendance["event_name"],

@@ -31,6 +31,8 @@ $router->get('/attendee', 'attendees/show.php')->only('auth')->only('admin');
 $router->get('/attendee/add', 'attendees/create.php')->only('auth')->only('admin');
 $router->post('/attendee/add', 'attendees/store.php')->only('auth')->only('admin');
 // TODO: add remove attendee feature
+$router->get('/attendee/delete', 'attendees/delete.php')->only('auth')->only('admin');
+$router->get('/attendee/delete', 'attendees/destroy.php')->only('auth')->only('admin');
 
 $router->get('/account', 'accounts/index.php')->only('auth');
 // TODO: finish account edit feature

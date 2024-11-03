@@ -10,9 +10,9 @@
     <div id="reader" class="mb-4"></div>
 
     <form action="/attendee/add" method="POST" class="mb-2">
-        <input type="hidden" name="id" value="<?= $_GET["id"] ?>">
+        <input type="hidden" name="event_id" value="<?= $_GET["id"] ?>">
         <!-- TODO: store user_id here -->
-        <input type="">
+        <input type="hidden" id="user_id" name="user_id", value="<?= old("user_id") ?>">
 
         <?php if (!empty(error("event_not_found"))) : ?>
             <p class="text-danger mt-2"><?= error("event_not_found") ?></p>
@@ -83,6 +83,7 @@
         // Parses the json from the qr code
         const userInfo = JSON.parse(decodedText);
 
+        document.querySelector("#user_id").value = userInfo.id;
         document.querySelector("#username").value = userInfo.username;
         document.querySelector("#email").value = userInfo.email;
         document.querySelector("#role").value = userInfo.role;
