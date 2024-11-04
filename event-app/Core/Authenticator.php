@@ -2,8 +2,6 @@
 
 namespace Core;
 
-use function Illuminate\Events\queueable;
-
 class Authenticator
 {
     public function attemptLogin($email, $password)
@@ -89,27 +87,35 @@ class Authenticator
         $db = App::resolve(Database::class);
 
         // Checking if the user in the qr code exists
+        // TODO: return to the attendance/add page instead of failing
         $db->query("SELECT * FROM users WHERE id = :id", [
             "id" => $userId
         ])->findOrFail();
 
-        // TODO: check if the user in the qr code has already been added
-        $attendee = $db->query("SELECT * FROM attendances WHERE user_id = :user_id", [
-            "user_id" => $userId
-        ]);
+        // Getting existing attendee information, for avoiding duplicated
+        $attendee = $db->query(
+            "SELECT * FROM attendances WHERE user_id = :user_id AND event_id = :event_id",
+            [
+                "user_id" => $userId,
+                "event_id" => $eventId
+            ]
+        )->find();
 
         // If the user has already been recorded to have attended the event
         if ($attendee) {
-            return ["error" => "User already attended event."];
+            return ["user_already_attended_error" => "User already attended event."];
         }
 
+        // Getting the event by their id, for checking if the event exists
+        // This is for checking if the user changes the event_id in the hidden
+        // input element in the page
         $event = $db->query("SELECT * FROM events WHERE id = :id", [
             "id" => $eventId
         ])->find();
 
         // If no corresponding event is found
         if (!$event) {
-            return ["event_not_found" => "Event not found."];
+            return ["event_not_found_error" => "Event not found."];
         }
 
         $newAttendance = [

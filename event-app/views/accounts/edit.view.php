@@ -9,10 +9,6 @@
         <input type="hidden" name="_method" value="PATCH">
         <input type="hidden" name="id" value="<?= $_GET["id"] ?>">
 
-        <?php if (!empty(error("event_not_found"))) : ?>
-            <p class="text-danger mt-2"><?= error("event_not_found") ?></p>
-        <?php endif; ?>
-
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input type="text" name="username" id="username" class="form-control" value="<?= old("username") ?>">

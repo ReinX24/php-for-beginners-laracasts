@@ -2,8 +2,6 @@
 
 use Core\Authenticator;
 use Http\Forms\AttendeeForm;
-use Core\Session;
-use Hamcrest\Collection\IsEmptyTraversable;
 
 $attributes = [
     "event_id" => $_POST["event_id"],
@@ -25,12 +23,13 @@ $attendanceTaken = (new Authenticator)->attemptAttend(
     $attributes["event_id"]
 );
 
-var_dump(isset($attendanceTaken["error"]));
-exit;
+if ($attendanceTaken["user_already_attended_error"]) {
+    $form->error("user_already_attended_error", $attendanceTaken["user_already_attended_error"])->throw();
+}
 
-if ($attendanceTaken["error"]["event_not_found"]) {
+if ($attendanceTaken["event_not_found_error"]) {
     // This error is thrown when the user edits the event id using inspect.
-    $form->error("event_not_found", "No matching event found.")->throw();
+    $form->error("event_not_found_error", $attendanceTaken["event_not_found_error"])->throw();
 }
 
 redirect("/event?id=" . $attributes["event_id"]);

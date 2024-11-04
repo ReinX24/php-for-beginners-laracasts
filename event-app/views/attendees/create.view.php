@@ -11,11 +11,14 @@
 
     <form action="/attendee/add" method="POST" class="mb-2">
         <input type="hidden" name="event_id" value="<?= $_GET["id"] ?>">
-        <!-- TODO: store user_id here -->
-        <input type="hidden" id="user_id" name="user_id", value="<?= old("user_id") ?>">
+        <input type="hidden" id="user_id" name="user_id" , value="<?= old("user_id") ?>">
 
-        <?php if (!empty(error("event_not_found"))) : ?>
-            <p class="text-danger mt-2"><?= error("event_not_found") ?></p>
+        <?php if (!empty(error("user_already_attended_error"))) : ?>
+            <p class="text-danger mt-2"><?= error("user_already_attended_error") ?></p>
+        <?php endif; ?>
+
+        <?php if (!empty(error("event_not_found_error"))) : ?>
+            <p class="text-danger mt-2"><?= error("event_not_found_error") ?></p>
         <?php endif; ?>
 
         <div class="mb-3">
