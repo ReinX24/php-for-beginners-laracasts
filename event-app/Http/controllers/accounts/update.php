@@ -7,13 +7,16 @@ $attributes = [
     "username" => $_POST["username"],
     "email" => $_POST["email"],
     "year_program_block" => $_POST["year_program_block"],
-    "password" => $_POST["password"]
+    "enteredPassword" => $_POST["password"],
+    "storedPassword" => $_SESSION["user"]["password"]
 ];
 
-// TODO: validate the information from the form
 $form = UpdateAccountForm::validate($attributes);
 
-var_dump($form);
+// TODO: create attempt edit function
 echo "<pre>";
+// var_dump($form);
 var_dump($_POST);
+// var_dump($_SESSION);
 echo "</pre>";
+exit;

@@ -19,8 +19,15 @@ class UpdateAccountForm
             $this->errors['email'] = 'Please provide a valid email address.';
         }
 
-        if (!Validator::string($attributes["password"], 7, 255)) {
-            $this->errors['password'] = 'Please provide a password of at least seven characters.';
+        if (!Validator::string($attributes["enteredPassword"], 7, 255)) {
+            $this->errors['enteredPassword'] = 'Please provide a password of at least seven characters.';
+        }
+
+        if (!Validator::matchPasswords(
+            $attributes["enteredPassword"],
+            $attributes["storedPassword"]
+        )) {
+            $this->errors["incorrectPassword"] = 'Incorrect password, please enter correct password for account.';
         }
 
         if (!Validator::string($attributes["year_program_block"])) {

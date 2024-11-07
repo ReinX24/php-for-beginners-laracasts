@@ -46,6 +46,14 @@
             <input type="password" name="password" id="password" class="form-control">
         </div>
 
+        <?php if (!empty(error("enteredPassword"))) : ?>
+            <p class="text-danger mt-2"><?= error("enteredPassword") ?></p>
+        <?php endif; ?>
+
+        <?php if (!empty(error("incorrectPassword"))) : ?>
+            <p class="text-danger mt-2"><?= error("incorrectPassword") ?></p>
+        <?php endif; ?>
+
         <button type=" submit" class="btn btn-primary">Update Account</button>
     </form>
 </div>

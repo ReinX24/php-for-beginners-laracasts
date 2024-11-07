@@ -31,4 +31,9 @@ class Validator
     {
         return $startTime < $endTime;
     }
+
+    public static function matchPasswords(String $enteredPassword, String $storedPassword)
+    {
+        return password_verify($enteredPassword, $storedPassword);
+    }
 }

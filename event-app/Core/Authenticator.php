@@ -10,7 +10,7 @@ class Authenticator
         $db = App::resolve(Database::class);
         $user = $db->query("SELECT * FROM users WHERE email = :email", [
             "email" => $email
-        ])->findOrFail();
+        ])->find();
 
         // If a user is not found (false)
         if ($user) {
@@ -22,7 +22,8 @@ class Authenticator
                     'username' => $user["username"],
                     'email' => $user["email"],
                     'role' => $user["role"],
-                    'year_program_block' => $user["year_program_block"]
+                    'year_program_block' => $user["year_program_block"],
+                    'password' => $user["password"]
                 ]);
 
                 // If the password is verified, then the user is authenticated.
@@ -189,7 +190,8 @@ class Authenticator
             'username' => $user["username"],
             'email' => $user["email"],
             'role' => $user["role"],
-            'year_program_block' => $user["year_program_block"]
+            'year_program_block' => $user["year_program_block"],
+            'password' => $user["password"]
         ];
 
         session_regenerate_id(true);
