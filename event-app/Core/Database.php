@@ -42,7 +42,7 @@ class Database
         $result = $this->find();
         // Not found error if the note does not exist
         if (!$result) {
-            abort();
+            abort(404);
         }
 
         return $result;

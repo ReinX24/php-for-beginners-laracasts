@@ -59,7 +59,8 @@ function old($key, $default = "")
     return Core\Session::get("old")[$key] ?? $default;
 }
 
-function error($key, $default = "") {
+function error($key, $default = "")
+{
     return Core\Session::get("errors")[$key] ?? $default;
 }
 

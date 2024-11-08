@@ -5,14 +5,11 @@
 <?php require basePath('views/partials/banner.php'); ?>
 
 <div class="container">
+    <div class="alert alert-info" role="alert">
+        Updating Account will log you out!
+    </div>
     <form action="/account/update" method="POST" class="mb-2">
         <input type="hidden" name="_method" value="PATCH">
-
-        <?php
-        echo "<pre>";
-        var_dump($_SESSION);
-        echo "</pre>";
-        ?>
 
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
@@ -43,11 +40,20 @@
 
         <div class="mb-3">
             <label for="password" class="form-label">Password (needed to update account information)</label>
-            <input type="password" name="password" id="password" class="form-control">
+            <input type="password" name="password" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Enter password again to confirm</label>
+            <input type="password" name="confirmPassword" class="form-control">
         </div>
 
         <?php if (!empty(error("enteredPassword"))) : ?>
             <p class="text-danger mt-2"><?= error("enteredPassword") ?></p>
+        <?php endif; ?>
+
+        <?php if (!empty(error("confirmPassword"))) : ?>
+            <p class="text-danger mt-2"><?= error("confirmPassword") ?></p>
         <?php endif; ?>
 
         <?php if (!empty(error("incorrectPassword"))) : ?>

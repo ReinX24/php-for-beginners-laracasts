@@ -23,7 +23,11 @@ class UpdateAccountForm
             $this->errors['enteredPassword'] = 'Please provide a password of at least seven characters.';
         }
 
-        if (!Validator::matchPasswords(
+        if (!Validator::matchEnteredPasswords($attributes["enteredPassword"], $attributes["confirmPassword"])) {
+            $this->errors['confirmPassword'] = 'Passwords are not the same.';
+        }
+
+        if (!Validator::matchStoredPassword(
             $attributes["enteredPassword"],
             $attributes["storedPassword"]
         )) {

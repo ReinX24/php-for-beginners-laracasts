@@ -30,14 +30,13 @@ $router->post('/event/delete', 'events/destroy.php')->only('auth')->only('admin'
 $router->get('/attendee', 'attendees/show.php')->only('auth')->only('admin');
 $router->get('/attendee/add', 'attendees/create.php')->only('auth')->only('admin');
 $router->post('/attendee/add', 'attendees/store.php')->only('auth')->only('admin');
-// TODO: add remove attendee feature
-$router->get('/attendee/delete', 'attendees/delete.php')->only('auth')->only('admin');
-$router->get('/attendee/delete', 'attendees/destroy.php')->only('auth')->only('admin');
+
+$router->delete('/attendee/destroy', 'attendees/destroy.php')->only('auth')->only('admin');
 
 $router->get('/account', 'accounts/index.php')->only('auth');
-// TODO: finish account edit feature
 $router->get('/account/edit', 'accounts/edit.php')->only('auth');
 $router->patch('/account/update', 'accounts/update.php')->only('auth');
+// TODO: add a change account password feature
 
 $router->get('/account/delete', 'accounts/delete.php')->only('auth');
 $router->post('/account/destroy', 'accounts/destroy.php')->only('auth');

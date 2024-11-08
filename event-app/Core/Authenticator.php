@@ -183,6 +183,58 @@ class Authenticator
         return true;
     }
 
+    public function attemptAccountUpdate(
+        $userId,
+        $username,
+        $email,
+        $year_program_block,
+    ) {
+        $db = App::resolve(Database::class);
+
+        $db->query(
+            "UPDATE 
+                users 
+            SET 
+                username = :username, 
+                email = :email, 
+                year_program_block = :year_program_block 
+            WHERE 
+                id = :id",
+            [
+                "username" => $username,
+                "email" => $email,
+                "year_program_block" => $year_program_block,
+                "id" => $userId
+            ]
+        );
+
+        return true;
+    }
+
+    public function attemptAttendeeDelete($eventId, $userId, $attendanceId)
+    {
+        $db = App::resolve(Database::class);
+
+        // Delete attendance from the database using event_id and user_id
+        $db->query(
+            "DELETE FROM 
+                attendances 
+            WHERE 
+                event_id = :event_id
+            AND 
+                user_id = :user_id
+            AND
+                id = :attendance_id",
+            [
+                "user_id" => $userId,
+                "event_id" => $eventId,
+                "attendance_id" => $attendanceId
+            ]
+        );
+
+        return true;
+    }
+
     public function login($user)
     {
         $_SESSION['user'] = [

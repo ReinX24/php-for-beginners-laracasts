@@ -32,7 +32,22 @@ class Validator
         return $startTime < $endTime;
     }
 
-    public static function matchPasswords(String $enteredPassword, String $storedPassword)
+    /**
+     * Checks if two passwords are the same
+     * @return bool
+     */
+    public static function matchEnteredPasswords(String $enteredPassword, String $confirmPassword): bool
+    {
+        return $enteredPassword === $confirmPassword;
+    }
+
+    /**
+     * Checks if the entered password is the same with the hashed password
+     * @param string $enteredPassword
+     * @param string $storedPassword
+     * @return bool
+     */
+    public static function matchStoredPassword(String $enteredPassword, String $storedPassword)
     {
         return password_verify($enteredPassword, $storedPassword);
     }
