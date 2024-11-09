@@ -18,13 +18,15 @@
     <p>Date: <?= $event["date"] ?></p>
 
     <hr>
-    <!-- TODO: add a search attendee by name, year_block_program -->
-    <div class="mb-3">
-        <label for="searchAttendee" class="form-label fs-4">Search by name</label>
-        <input type="text" name="searchAttendee" class="form-control form-control-lg">
-    </div>
 
-    <a href="" class="btn btn-primary">Search</a>
+    <form action="/event/search_attendees" method="GET">
+        <div class="input-group input-group-lg mb-3">
+            <!-- <input type="hidden" name="event_id" value="<?= ?>"> -->
+            <input type="text" class="form-control" name="search_name" placeholder="Search by name">
+            <button type="submit" class="btn btn-outline-primary">Search</button>
+            <!-- <a href="/event/search_attendees?event_id=<?= $_GET["id"] ?>" class="btn btn-outline-primary">Search</a> -->
+        </div>
+    </form>
 
     <hr>
     <h4>Attendees:</h4>
