@@ -27,20 +27,36 @@
         </div>
     </form>
 
-    <!-- TODO: search by year course and block -->
+    <!-- TODO: finish search by year course and block -->
+    <form action="/event/search_attendees" method="GET">
+        <div class="input-group input-group-lg mb-3">
+            <select class="form-select" name="sort_select" id="sort_select">
+                <?php foreach ($yearProgramBlockChoices as $data) : ?>
+                    <option value="<?= $data["year_program_block"] ?>">
+                        <?= $data["year_program_block"] ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+            <input type="hidden" name="id" value="<?= $_GET["id"] ?>">
+            <button type="submit" class="btn btn-outline-primary">Search</button>
+        </div>
+    </form>
 
     <!-- TODO: change order by latest to oldest and vice versa -->
     <form action="/event/sort_attendees_time" method="GET">
         <div class="input-group input-group-lg mb-3">
-            <select class="form-select" id="sort_select">
-                <option selected value="descending">Sort time</option>
-                <option value="descending">Descending</option>
-                <option value="ascending">Ascending</option>
+            <select class="form-select" name="sort_select" id="sort_select">
+                <option value="descending" <?= isset($_GET["sort_select"]) && $_GET["sort_select"] === "descending" ? "selected" : "" ?>>Descending (Lastest to Oldest)</option>
+                <option value="ascending" <?= isset($_GET["sort_select"]) && $_GET["sort_select"] === "ascending" ? "selected" : "" ?>>Ascending (Oldest to Lastest)</option>
             </select>
-            <button type="submit" class="btn btn-outline-primary">Sort</button>
+            <input type="hidden" name="id" value="<?= $_GET["id"] ?>">
+            <button type="submit" class="btn btn-outline-primary">Sort Time</button>
         </div>
-
     </form>
+
+    <!-- TODO: search using all queries -->
+
+    <!-- TODO: reset all queries and the entire page -->
 
     <hr>
     <h4>Attendees:</h4>

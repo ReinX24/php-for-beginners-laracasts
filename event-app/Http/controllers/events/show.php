@@ -20,6 +20,14 @@ $attendees = $db->query(
     ]
 )->get();
 
+$yearProgramBlockChoices = $db->query(
+    "SELECT DISTINCT year_program_block 
+    FROM attendances WHERE event_id = :event_id",
+    [
+        'event_id' => $_GET["id"]
+    ]
+)->get();
+
 // echo "<pre>";
 // var_dump($attendees);
 // echo "</pre>";
@@ -27,5 +35,6 @@ $attendees = $db->query(
 view('events/show.view.php', [
     'heading' => $event['event_name'],
     'event' => $event,
-    'attendees' => $attendees
+    'attendees' => $attendees,
+    'yearProgramBlockChoices' => $yearProgramBlockChoices
 ]);
