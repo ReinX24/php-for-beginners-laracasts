@@ -28,9 +28,7 @@ $router->get('/event/delete', 'events/delete.php')->only('auth')->only('admin');
 $router->post('/event/delete', 'events/destroy.php')->only('auth')->only('admin');
 
 $router->get('/event/search_attendees', 'events/search_attendees.php')->only('auth')->only('admin');
-
-// TODO: search for attendee year course and block
-
+$router->get('/event/sort_attendees_year_program_block', 'events/sort_attendees_year_program_block.php')->only('auth')->only('admin');
 $router->get('/event/sort_attendees_time', 'events/sort_attendees_time.php')->only('auth')->only('admin');
 
 $router->get('/attendee', 'attendees/show.php')->only('auth')->only('admin');

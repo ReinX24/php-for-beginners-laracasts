@@ -4,19 +4,19 @@
 
 <?php require basePath('views/partials/banner.php'); ?>
 
-<div class="container">
-    <div class="d-flex gap-2 mb-2">
+<div class="container container-md pb-4">
+    <div class="d-grid gap-2 d-md-block gap-2 mb-2">
         <a href="/event/edit?id=<?= $event['id'] ?>" class="btn btn-lg btn-primary">Edit</a>
         <a href="/event/delete?id=<?= $event['id'] ?>" class="btn btn-lg btn-danger">Delete</a>
     </div>
 
     <hr>
     <!-- Showing selected event info -->
-    <h4>Location: <?= htmlspecialchars($event['place']); ?></h4>
+    <p class="fs-4"><span class="fw-semibold">Location:</span> <?= htmlspecialchars($event['place']); ?></p>
     <!-- TODO: format time -->
-    <p>Start time: <?= convertTime($event["start_time"]) ?></p>
-    <p>End time: <?= convertTime($event["end_time"]) ?></p>
-    <p>Date: <?= $event["date"] ?></p>
+    <p class="fs-4"><span class="fw-semibold">Start time:</span> <?= convertTime($event["start_time"]) ?></p>
+    <p class="fs-4"><span class="fw-semibold">End time:</span> <?= convertTime($event["end_time"]) ?></p>
+    <p class="fs-4"><span class="fw-semibold">Date:</span> <?= $event["date"] ?></p>
 
     <hr>
     <form action="/event/search_attendees" method="GET">
@@ -28,11 +28,17 @@
     </form>
 
     <!-- TODO: finish search by year course and block -->
-    <form action="/event/search_attendees" method="GET">
+    <form action="/event/sort_attendees_year_program_block" method="GET">
         <div class="input-group input-group-lg mb-3">
-            <select class="form-select" name="sort_select" id="sort_select">
+            <select class="form-select" name="year_program_block">
+                <option value="default" selected>Default</option>
                 <?php foreach ($yearProgramBlockChoices as $data) : ?>
-                    <option value="<?= $data["year_program_block"] ?>">
+                    <option value="<?= $data["year_program_block"] ?>"
+                        <?= isset($selectedYearProgramBlock)
+                            &&
+                            $selectedYearProgramBlock
+                            ===
+                            $data["year_program_block"] ? "selected" : "" ?>>
                         <?= $data["year_program_block"] ?>
                     </option>
                 <?php endforeach; ?>
@@ -55,8 +61,14 @@
     </form>
 
     <!-- TODO: search using all queries -->
+    <form action="" class="d-grid mb-2">
+        <button type="submit" class="btn btn-outline-success btn-lg">Search</button>
+    </form>
 
     <!-- TODO: reset all queries and the entire page -->
+    <form action="" class="d-grid">
+        <button type="submit" class="btn btn-outline-danger btn-lg">Reset</button>
+    </form>
 
     <hr>
     <h4>Attendees:</h4>

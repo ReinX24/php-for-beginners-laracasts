@@ -28,10 +28,6 @@ $yearProgramBlockChoices = $db->query(
     ]
 )->get();
 
-// echo "<pre>";
-// var_dump($attendees);
-// echo "</pre>";
-
 view('events/show.view.php', [
     'heading' => $event['event_name'],
     'event' => $event,

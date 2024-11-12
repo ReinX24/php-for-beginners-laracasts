@@ -5,10 +5,6 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
-// echo "<pre>";
-// var_dump($_GET);
-// echo "</pre>";
-
 $event = $db->query(
     "SELECT * FROM events WHERE id = :event_id",
     [
@@ -40,9 +36,3 @@ view('events/show.view.php', [
     'attendees' => $filteredAttendees,
     'search_query' => $_GET["search_name"]
 ]);
-
-// echo "<pre>";
-// var_dump($filteredAttendances);
-// echo "</pre>";
-
-// $filteredAttendees = $db->query("SELECT * FROM ");
