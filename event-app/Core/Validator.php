@@ -32,6 +32,33 @@ class Validator
         return $startTime < $endTime;
     }
 
+    public static function yearProgramBlock(string $yearProgramBlock)
+    {
+        // Separate the string into 3 elements
+        $values = explode("-", $yearProgramBlock);
+
+        // Check if there are not 3 elements
+        if (count($values) !== 3) {
+            return false;
+        }
+
+        // Check if the first and last elements are not 2 characters and not numeric
+        if (
+            strlen($values[0]) !== 2 || !is_numeric($values[0])
+            ||
+            strlen($values[2]) !== 2 || !is_numeric($values[2])
+        ) {
+            return false;
+        }
+
+        // Checks if the second element is not 3 characters
+        if (strlen($values[1]) !== 3) {
+            return false;
+        }
+
+        return true;
+    }
+
     /**
      * Checks if two passwords are the same
      * @return bool

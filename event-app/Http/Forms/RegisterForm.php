@@ -23,7 +23,7 @@ class RegisterForm
             $this->errors['password'] = 'Please provide a password of at least seven characters.';
         }
 
-        if (!Validator::string($attributes["year_program_block"])) {
+        if (!Validator::yearProgramBlock($attributes["year_program_block"])) {
             $this->errors["year-program-block"] = 'Please provide a valid year, program, and block.';
         }
     }

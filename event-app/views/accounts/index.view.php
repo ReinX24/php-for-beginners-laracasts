@@ -12,9 +12,7 @@
     </div>
 
     <div class="d-flex justify-content-center gap-2">
-        <!-- TODO: create edit account feature -->
         <a href="/account/edit" class="btn btn-secondary">Edit Account</a>
-        <!-- TODO: create delete account feature -->
         <a href="/account/delete" class="btn btn-danger">Delete Account</a>
     </div>
 

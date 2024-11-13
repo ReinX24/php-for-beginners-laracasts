@@ -30,9 +30,18 @@ $filteredAttendees = $db->query(
     ]
 )->get();
 
+$yearProgramBlockChoices = $db->query(
+    "SELECT DISTINCT year_program_block 
+    FROM attendances WHERE event_id = :event_id",
+    [
+        'event_id' => $_GET["id"]
+    ]
+)->get();
+
 view('events/show.view.php', [
     'heading' => $event['event_name'],
     'event' => $event,
     'attendees' => $filteredAttendees,
+    'yearProgramBlockChoices' => $yearProgramBlockChoices,
     'search_query' => $_GET["search_name"]
 ]);

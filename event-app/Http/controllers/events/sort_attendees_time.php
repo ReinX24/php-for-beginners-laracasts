@@ -30,9 +30,18 @@ if ($_GET["sort_select"] === "descending") {
     )->get();
 }
 
+$yearProgramBlockChoices = $db->query(
+    "SELECT DISTINCT year_program_block 
+    FROM attendances WHERE event_id = :event_id",
+    [
+        'event_id' => $_GET["id"]
+    ]
+)->get();
+
 view('events/show.view.php', [
     'heading' => $event['event_name'],
     'event' => $event,
     'attendees' => $filteredAttendees,
-    'sort_select' => $_GET["sort_select"]
+    'yearProgramBlockChoices' => $yearProgramBlockChoices,
+    'sort_select' => $_GET["sort_select"],
 ]);

@@ -13,12 +13,12 @@
     <hr>
     <!-- Showing selected event info -->
     <p class="fs-4"><span class="fw-semibold">Location:</span> <?= htmlspecialchars($event['place']); ?></p>
-    <!-- TODO: format time -->
     <p class="fs-4"><span class="fw-semibold">Start time:</span> <?= convertTime($event["start_time"]) ?></p>
     <p class="fs-4"><span class="fw-semibold">End time:</span> <?= convertTime($event["end_time"]) ?></p>
-    <p class="fs-4"><span class="fw-semibold">Date:</span> <?= $event["date"] ?></p>
+    <p class="fs-4"><span class="fw-semibold">Date:</span> <?= convertDate($event["date"]) ?></p>
 
     <hr>
+    <!-- Search by name -->
     <form action="/event/search_attendees" method="GET">
         <div class="input-group input-group-lg mb-3">
             <input type="text" class="form-control" name="search_name" placeholder="Search by name" value="<?= $search_query ?? "" ?>">
@@ -27,11 +27,11 @@
         </div>
     </form>
 
-    <!-- TODO: finish search by year course and block -->
+    <!-- Search by year course and block -->
     <form action="/event/sort_attendees_year_program_block" method="GET">
         <div class="input-group input-group-lg mb-3">
             <select class="form-select" name="year_program_block">
-                <option value="default" selected>Default</option>
+                <option value="all" selected>All</option>
                 <?php foreach ($yearProgramBlockChoices as $data) : ?>
                     <option value="<?= $data["year_program_block"] ?>"
                         <?= isset($selectedYearProgramBlock)
@@ -48,12 +48,12 @@
         </div>
     </form>
 
-    <!-- TODO: change order by latest to oldest and vice versa -->
+    <!-- Changes order from latest to oldest and vice-versa -->
     <form action="/event/sort_attendees_time" method="GET">
         <div class="input-group input-group-lg mb-3">
             <select class="form-select" name="sort_select" id="sort_select">
-                <option value="descending" <?= isset($_GET["sort_select"]) && $_GET["sort_select"] === "descending" ? "selected" : "" ?>>Descending (Lastest to Oldest)</option>
-                <option value="ascending" <?= isset($_GET["sort_select"]) && $_GET["sort_select"] === "ascending" ? "selected" : "" ?>>Ascending (Oldest to Lastest)</option>
+                <option value="descending" <?= isset($_GET["sort_select"]) && $_GET["sort_select"] === "descending" ? "selected" : "" ?>>Descending (Latest to Oldest)</option>
+                <option value="ascending" <?= isset($_GET["sort_select"]) && $_GET["sort_select"] === "ascending" ? "selected" : "" ?>>Ascending (Oldest to Latest)</option>
             </select>
             <input type="hidden" name="id" value="<?= $_GET["id"] ?>">
             <button type="submit" class="btn btn-outline-primary">Sort Time</button>
@@ -66,7 +66,7 @@
     </form>
 
     <!-- TODO: reset all queries and the entire page -->
-    <form action="" class="d-grid">
+    <form action="/event/reset" class="d-grid">
         <button type="submit" class="btn btn-outline-danger btn-lg">Reset</button>
     </form>
 
@@ -83,7 +83,7 @@
                     </div>
                     <p class="mb-1"><?= $attendee["year_program_block"] ?></p>
                     <!-- TODO: format time in -->
-                    <small><?= $attendee["time_in"] ?></small>
+                    <small><?= convertTimeIn($attendee["time_in"]) ?></small>
                 </a>
             <?php endforeach ?>
         </div>

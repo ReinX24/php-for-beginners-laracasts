@@ -68,3 +68,12 @@ function convertTime($time)
 {
     return date("h:i A", strtotime($time));
 }
+
+function convertDate($time)
+{
+    return date("F d, Y", strtotime($time));
+}
+
+function convertTimeIn($timeIn) {
+    return date("h: i A (F d, Y)", strtotime($timeIn));
+}

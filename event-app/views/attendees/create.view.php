@@ -11,7 +11,11 @@
 
     <form action="/attendee/add" method="POST" class="mb-2">
         <input type="hidden" name="event_id" value="<?= $_GET["id"] ?>">
-        <input type="hidden" id="user_id" name="user_id" , value="<?= old("user_id") ?>">
+        <input type="hidden" id="user_id" name="user_id" value="<?= old("user_id") ?>">
+
+        <?php if (!empty(error("user_not_found_error"))) : ?>
+            <p class="text-danger mt-2"><?= error("user_not_found_error") ?></p>
+        <?php endif; ?>
 
         <?php if (!empty(error("user_already_attended_error"))) : ?>
             <p class="text-danger mt-2"><?= error("user_already_attended_error") ?></p>
@@ -49,7 +53,7 @@
         <?php endif; ?>
 
         <div class="mb-3">
-            <label for="year_program_block" class="form-label">Year, Program, and Block (11 - ITE - 01)</label>
+            <label for="year_program_block" class="form-label">Year, Program, and Block (31-ITE-01)</label>
             <input type="text" name="year_program_block" id="year_program_block" class="form-control" value="<?= old("year_program_block") ?>">
         </div>
 

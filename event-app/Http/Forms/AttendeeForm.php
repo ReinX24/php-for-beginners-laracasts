@@ -24,8 +24,7 @@ class AttendeeForm
             $this->errors['role'] = 'Please provide a role.';
         }
 
-        // TODO: regex validation for valid year_program_block formatting
-        if (!Validator::string($attributes["year_program_block"])) {
+        if (!Validator::yearProgramBlock($attributes["year_program_block"])) {
             $this->errors['year_program_block'] = 'Please provide a valid year, program, and block.';
         }
     }

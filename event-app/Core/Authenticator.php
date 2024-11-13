@@ -88,10 +88,14 @@ class Authenticator
         $db = App::resolve(Database::class);
 
         // Checking if the user in the qr code exists
-        // TODO: return to the attendance/add page instead of failing
-        $db->query("SELECT * FROM users WHERE id = :id", [
+        $existingUser = $db->query("SELECT * FROM users WHERE id = :id", [
             "id" => $userId
-        ])->findOrFail();
+        ])->find();
+
+        // If the user does not exist, return to the page with errors
+        if (!$existingUser) {
+            return ["user_not_found_error" => "User not found."];
+        }
 
         // Getting existing attendee information, for avoiding duplicated
         $attendee = $db->query(

@@ -12,7 +12,7 @@ $event = $db->query(
     ]
 )->findOrFail();
 
-if ($_GET["year_program_block"] === "default") {
+if ($_GET["year_program_block"] === "all") {
     $filteredAttendees = $db->query(
         "SELECT * FROM attendances 
         WHERE event_id = :event_id",
@@ -32,7 +32,6 @@ if ($_GET["year_program_block"] === "default") {
     )->get();
 }
 
-// TODO: add this for each searc query
 $yearProgramBlockChoices = $db->query(
     "SELECT DISTINCT year_program_block 
     FROM attendances WHERE event_id = :event_id",
@@ -46,5 +45,5 @@ view('events/show.view.php', [
     'event' => $event,
     'attendees' => $filteredAttendees,
     'yearProgramBlockChoices' => $yearProgramBlockChoices,
-    'selectedYearProgramBlock' => $_GET["year_program_block"]
+    'selectedYearProgramBlock' => $_GET["year_program_block"],
 ]);

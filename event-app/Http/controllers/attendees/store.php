@@ -23,6 +23,10 @@ $attendanceTaken = (new Authenticator)->attemptAttend(
     $attributes["event_id"]
 );
 
+if ($attendanceTaken["user_not_found_error"]) {
+    $form->error("user_not_found_error", $attendanceTaken["user_not_found_error"])->throw();
+}
+
 if ($attendanceTaken["user_already_attended_error"]) {
     $form->error("user_already_attended_error", $attendanceTaken["user_already_attended_error"])->throw();
 }
