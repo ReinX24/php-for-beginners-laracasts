@@ -4,7 +4,7 @@
 
 <?php require basePath('views/partials/banner.php'); ?>
 
-<div class="container">
+<div class="container mb-4">
     <div class="alert alert-info" role="alert">
         Updating Account will log you out!
     </div>
@@ -60,8 +60,15 @@
             <p class="text-danger mt-2"><?= error("incorrectPassword") ?></p>
         <?php endif; ?>
 
-        <button type=" submit" class="btn btn-primary">Update Account</button>
+        <div class="d-flex justify-content-center gap-2">
+            <button type=" submit" class="btn btn-primary btn-lg">Update Account</button>
+            <a href="/account" class="btn btn-secondary btn-lg">Cancel</a>
+        </div>
     </form>
+
+    <div class="d-flex justify-content-center">
+        <a href="/account/change_password" class="btn btn-primary btn-lg">Change Password</a>
+    </div>
 </div>
 
 <?php require basePath('views/partials/footer.php'); ?>
