@@ -9,6 +9,10 @@
         Changing Password will log you out!
     </div>
 
+    <?php
+        var_dump($_SESSION["_flash"]["errors"] ?? "");
+    ?>
+
     <form action="/account/update_password" method="POST">
         <input type="hidden" name="_method" value="PATCH">
         <div class="mb-3">
