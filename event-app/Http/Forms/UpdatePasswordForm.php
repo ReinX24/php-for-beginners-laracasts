@@ -20,9 +20,9 @@ class UpdatePasswordForm
         }
 
         // Checking if the entered password is the same as the stored password.
-        // if (!Validator::matchStoredPassword($attributes["password"], )) {
-
-        // }
+        if (!Validator::matchStoredPassword($attributes["password"], $attributes["stored_password"])) {
+            $this->errors['incorrect_password_error'] = 'Incorrect password.';
+        }
 
         // Checking if the entered new passwords are the same.
         if (!Validator::matchEnteredPasswords(

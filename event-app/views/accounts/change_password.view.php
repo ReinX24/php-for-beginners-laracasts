@@ -10,7 +10,7 @@
     </div>
 
     <?php
-        var_dump($_SESSION["_flash"]["errors"] ?? "");
+    var_dump($_SESSION["_flash"]["errors"] ?? "");
     ?>
 
     <form action="/account/update_password" method="POST">
@@ -25,6 +25,14 @@
             <input type="password" name="reenter_password" class="form-control form-control-lg">
         </div>
 
+        <?php if (!empty(error("passwords_mismatch_error"))) : ?>
+            <p class="text-danger mt-2"><?= error("passwords_mismatch_error") ?></p>
+        <?php endif; ?>
+
+        <?php if (!empty(error("incorrect_password_error"))) : ?>
+            <p class="text-danger mt-2"><?= error("incorrect_password_error") ?></p>
+        <?php endif; ?>
+
         <div class="mb-3">
             <label for="new_password" class="form-label fs-4">New Password</label>
             <input type="password" name="new_password" class="form-control form-control-lg">
@@ -34,6 +42,10 @@
             <label for="reenter_new_password" class="form-label fs-4">Re-enter New Password</label>
             <input type="password" name="reenter_new_password" class="form-control form-control-lg">
         </div>
+
+        <?php if (!empty(error("new_passwords_mismatch_error"))) : ?>
+            <p class="text-danger mt-2"><?= error("new_passwords_mismatch_error") ?></p>
+        <?php endif; ?>
 
         <div class="d-flex justify-content-center gap-2">
             <button type="submit" class="btn btn-primary btn-lg">Change Password</button>
