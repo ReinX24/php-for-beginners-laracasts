@@ -10,7 +10,13 @@
     </div>
 
     <?php
-    var_dump($_SESSION["_flash"]["errors"] ?? "");
+    echo "<pre>";
+    // var_dump($_SESSION["_flash"]["errors"] ?? "");
+    // var_dump($_SESSION["user"]);
+    // TODO: set max lifetime of session to 1 day
+    var_dump(gmdate("m-s",time() - $_SESSION["user"]["session_creation_time"]));
+    echo "</pre>";
+    exit;
     ?>
 
     <form action="/account/update_password" method="POST">
@@ -47,9 +53,13 @@
             <p class="text-danger mt-2"><?= error("new_passwords_mismatch_error") ?></p>
         <?php endif; ?>
 
+        <?php if (!empty(error("password_too_short_error"))) : ?>
+            <p class="text-danger mt-2"><?= error("password_too_short_error") ?></p>
+        <?php endif; ?>
+
         <div class="d-flex justify-content-center gap-2">
-            <button type="submit" class="btn btn-primary btn-lg">Change Password</button>
-            <a href="/account" class="btn btn-secondary btn-lg">Cancel</a>
+            <button type="submit" class="btn btn-outline-success btn-lg">Change Password</button>
+            <a href="/account/edit" class="btn btn-secondary btn-lg">Cancel</a>
         </div>
     </form>
 

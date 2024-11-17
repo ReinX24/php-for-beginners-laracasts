@@ -215,6 +215,21 @@ class Authenticator
         return true;
     }
 
+    public function attemptPasswordUpdate($newPassword, $userId)
+    {
+        $db = App::resolve(Database::class);
+
+        $db->query("UPDATE users SET password = :password WHERE id = :id", [
+            'id' => $userId,
+            'password' => password_hash(
+                $newPassword,
+                PASSWORD_DEFAULT
+            )
+        ]);
+
+        return true;
+    }
+
     public function attemptAttendeeDelete($eventId, $userId, $attendanceId)
     {
         $db = App::resolve(Database::class);
@@ -247,7 +262,8 @@ class Authenticator
             'email' => $user["email"],
             'role' => $user["role"],
             'year_program_block' => $user["year_program_block"],
-            'password' => $user["password"]
+            'password' => $user["password"],
+            'session_creation_time' => time()
         ];
 
         session_regenerate_id(true);

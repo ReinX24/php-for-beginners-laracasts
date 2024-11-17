@@ -13,7 +13,14 @@ $attributes = [
 
 $form = UpdatePasswordForm::validate($attributes);
 
-// TODO: attempt update password authenticator
+$passwordUpdated = (new Authenticator)->attemptPasswordUpdate(
+    $_POST["new_password"],
+    $_SESSION["user"]["id"]
+);
 
-// TODO: finish change password functionality
-dd($attributes);
+// If the user successfully updates or edits their account, log out account
+$auth = new Authenticator();
+$auth->logout();
+
+// Redirect the user.
+redirect("/");

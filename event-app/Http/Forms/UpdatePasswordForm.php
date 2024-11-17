@@ -11,6 +11,23 @@ class UpdatePasswordForm
 
     public function __construct(public array $attributes)
     {
+        // Checking if any of the passwords are not at least 7 characters.
+        if (!Validator::string($attributes["password"], 7, 255)) {
+            $this->errors['password_too_short_error'] = 'Please provide a password of at least sever characters, this applies to all passwords.';
+        }
+
+        if (!Validator::string($attributes["reenter_password"], 7, 255)) {
+            $this->errors['password_too_short_error'] = 'Please provide a password of at least sever characters, this applies to all passwords.';
+        }
+
+        if (!Validator::string($attributes["new_password"], 7, 255)) {
+            $this->errors['password_too_short_error'] = 'Please provide a password of at least sever characters, this applies to all passwords.';
+        }
+
+        if (!Validator::string($attributes["reenter_new_password"], 7, 255)) {
+            $this->errors['password_too_short_error'] = 'Please provide a password of at least sever characters, this applies to all passwords.';
+        }
+
         // Checking if the entered passwords are the same.
         if (!Validator::matchEnteredPasswords(
             $attributes["password"],
@@ -20,7 +37,10 @@ class UpdatePasswordForm
         }
 
         // Checking if the entered password is the same as the stored password.
-        if (!Validator::matchStoredPassword($attributes["password"], $attributes["stored_password"])) {
+        if (!Validator::matchStoredPassword(
+            $attributes["password"],
+            $attributes["stored_password"]
+        )) {
             $this->errors['incorrect_password_error'] = 'Incorrect password.';
         }
 
@@ -31,25 +51,6 @@ class UpdatePasswordForm
         )) {
             $this->errors['new_passwords_mismatch_error'] = 'New passwords are not the same.';
         }
-
-        // if (!Validator::string($attributes["enteredPassword"], 7, 255)) {
-        //     $this->errors['enteredPassword'] = 'Please provide a password of at least seven characters.';
-        // }
-
-        // if (!Validator::matchEnteredPasswords($attributes["enteredPassword"], $attributes["confirmPassword"])) {
-        //     $this->errors['confirmPassword'] = 'Passwords are not the same.';
-        // }
-
-        // if (!Validator::matchStoredPassword(
-        //     $attributes["enteredPassword"],
-        //     $attributes["storedPassword"]
-        // )) {
-        //     $this->errors["incorrectPassword"] = 'Incorrect password, please enter correct password for account.';
-        // }
-
-        // if (!Validator::string($attributes["year_program_block"])) {
-        //     $this->errors["year-program-block"] = 'Please provide a valid year, program, and block.';
-        // }
     }
 
     public static function validate($attributes)

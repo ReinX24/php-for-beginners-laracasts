@@ -61,7 +61,7 @@
         <?php endif; ?>
 
         <div class="d-flex justify-content-center gap-2">
-            <button type=" submit" class="btn btn-primary btn-lg">Update Account</button>
+            <button type=" submit" class="btn btn-outline-success btn-lg">Update Account</button>
             <a href="/account" class="btn btn-secondary btn-lg">Cancel</a>
         </div>
     </form>
