@@ -9,16 +9,6 @@
         Changing Password will log you out!
     </div>
 
-    <?php
-    echo "<pre>";
-    // var_dump($_SESSION["_flash"]["errors"] ?? "");
-    // var_dump($_SESSION["user"]);
-    // TODO: set max lifetime of session to 1 day
-    var_dump(gmdate("m-s",time() - $_SESSION["user"]["session_creation_time"]));
-    echo "</pre>";
-    exit;
-    ?>
-
     <form action="/account/update_password" method="POST">
         <input type="hidden" name="_method" value="PATCH">
         <div class="mb-3">

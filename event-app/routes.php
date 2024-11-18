@@ -41,7 +41,6 @@ $router->get('/account', 'accounts/index.php')->only('auth');
 $router->get('/account/edit', 'accounts/edit.php')->only('auth');
 $router->patch('/account/update', 'accounts/update.php')->only('auth');
 
-// TODO: add a change account password feature
 $router->get('/account/change_password', 'accounts/change_password.php')->only('auth');
 $router->patch('/account/update_password', 'accounts/update_password.php')->only('auth');
 
