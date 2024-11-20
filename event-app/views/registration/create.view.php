@@ -43,6 +43,8 @@
             <p class="text-danger"><?= $errors['password']; ?></p>
         <?php endif ?>
 
+        <!-- TODO: add another field for repeating password -->
+
         <button type="submit" class="btn btn-primary w-100">Register</button>
     </form>
 
